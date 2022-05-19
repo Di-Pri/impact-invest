@@ -8,7 +8,7 @@ const HomePage: React.FC<HomeProps> = (props) => {
   return (
     <div>
       <p>Home Page</p>
-      <button onClick={() => navigate("/")}>Landing page</button>
+      <button onClick={() => navigate("/login")}>Login page</button>
     </div>
   );
 };
