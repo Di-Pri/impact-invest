@@ -1,0 +1,22 @@
+@use "../base" as b;
+
+.main-logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  svg {
+    width: 60vw;
+    height: auto;
+  }
+
+  h1 {
+    font-family: b.$logo-font-family;
+    font-size: 14vw;
+    font-weight: 900;
+    margin: 15px auto 0 auto;
+    font-style: italic;
+  }
+}

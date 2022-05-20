@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase-config";
 import { User as FirebaseUser } from "firebase/auth";
+import { MainLogo } from "../assets/MainLogo";
 
 export interface LoginProps {}
 
@@ -32,29 +33,41 @@ const LoginPage: React.FC<LoginProps> = (props) => {
   };
 
   return (
-    <div>
-      <p>Login Page</p>
+    <div className="login-page">
+      <section className="main-logo">
+        <MainLogo />
+        <h1>Impact Invest</h1>
+      </section>
 
-      <div>
-        <h3>Log in</h3>
-        <input
-          placeholder="Email..."
-          onChange={(event) => {
-            setLoginEmail(event.target.value);
-          }}
-        />
-        <input
-          placeholder="Password..."
-          onChange={(event) => {
-            setLoginPassword(event.target.value);
-          }}
-        />
+      <section className="login-details">
+        <div className="login-inputs">
+          <input
+            placeholder="Email"
+            onChange={(event) => {
+              setLoginEmail(event.target.value);
+            }}
+          />
+          <input
+            placeholder="Password"
+            onChange={(event) => {
+              setLoginPassword(event.target.value);
+            }}
+          />
+        </div>
 
-        <button onClick={login}>Log in</button>
+        <button className="text-button">Forgot password?</button>
 
-        <h4>Don't have an account?</h4>
-        <button onClick={() => navigate("/register")}>Sign up</button>
-      </div>
+        <button className="large-button" onClick={login}>
+          Log in
+        </button>
+
+        <div className="no-account">
+          <p>Don't have an account?</p>
+          <button className="text-button" onClick={() => navigate("/register")}>
+            Sign up
+          </button>
+        </div>
+      </section>
     </div>
   );
 };

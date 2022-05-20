@@ -1,0 +1,28 @@
+@use "../base" as b;
+
+.large-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+  height: 64px;
+  background-color: b.$app-main-color;
+  border: none;
+  border-radius: 10px;
+  font-size: 17px;
+  color: b.$bg-color;
+  font-family: b.$main-font-family;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  margin: 18px auto;
+}
+
+.text-button {
+  background: none;
+  border: none;
+  font-size: 15px;
+  color: b.$sec-text-color;
+  font-family: b.$main-font-family;
+  font-weight: 500;
+  margin-bottom: 10px;
+}

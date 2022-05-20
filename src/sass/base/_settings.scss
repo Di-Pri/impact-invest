@@ -1,3 +1,5 @@
+@use "./colors" as c;
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,4 +8,9 @@
 
 img {
   user-select: none;
+}
+
+body {
+  background-color: c.$bg-color;
+  color: c.$main-text-color;
 }
