@@ -5,7 +5,7 @@ import RegisterPage from "./pages/Register";
 import HomePage from "./pages/Home";
 import AuthRoute from "./components/AuthRoute";
 
-import "./App.css";
+import "./App.scss";
 
 export interface AppProps {}
 

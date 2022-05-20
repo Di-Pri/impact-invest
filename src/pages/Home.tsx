@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase-config";
 import { User as FirebaseUser } from "firebase/auth";
+import { MainLogo } from "../assets/MainLogo";
 
 export interface HomeProps {}
 
@@ -25,6 +26,7 @@ const HomePage: React.FC<HomeProps> = (props) => {
   return (
     <div>
       <p>Home Page</p>
+      <MainLogo />
 
       <h4>User logged in:</h4>
       {user?.email}
