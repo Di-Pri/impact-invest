@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase-config";
 import { User as FirebaseUser } from "firebase/auth";
 
-export interface LoginProps {}
+export interface RegisterProps {}
 
-const LoginPage: React.FC<LoginProps> = (props) => {
-  const [loginEmail, setLoginEmail] = useState<string>("");
-  const [loginPassword, setLoginPassword] = useState<string>("");
+const RegisterPage: React.FC<RegisterProps> = (props) => {
+  const [registerEmail, setRegisterEmail] = useState<string>("");
+  const [registerPassword, setRegisterPassword] = useState<string>("");
   const [user, setUser] = useState<FirebaseUser | null>(null);
 
   const navigate = useNavigate();
@@ -22,10 +22,10 @@ const LoginPage: React.FC<LoginProps> = (props) => {
     });
   }, []);
 
-  const login = async () => {
+  const register = async () => {
     try {
-      const loggedUser = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
-      console.log("loggedUser", loggedUser);
+      const newUser = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
+      console.log("newUser", newUser);
     } catch (error) {
       console.log(error);
     }
@@ -33,30 +33,27 @@ const LoginPage: React.FC<LoginProps> = (props) => {
 
   return (
     <div>
-      <p>Login Page</p>
+      <p>Register Page</p>
 
       <div>
-        <h3>Log in</h3>
+        <h3>Register user</h3>
         <input
           placeholder="Email..."
           onChange={(event) => {
-            setLoginEmail(event.target.value);
+            setRegisterEmail(event.target.value);
           }}
         />
         <input
           placeholder="Password..."
           onChange={(event) => {
-            setLoginPassword(event.target.value);
+            setRegisterPassword(event.target.value);
           }}
         />
 
-        <button onClick={login}>Log in</button>
-
-        <h4>Don't have an account?</h4>
-        <button onClick={() => navigate("/register")}>Sign up</button>
+        <button onClick={register}>Create user</button>
       </div>
     </div>
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
