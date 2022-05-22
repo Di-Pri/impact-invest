@@ -5,6 +5,7 @@ import { auth } from "../firebase-config";
 import { User as FirebaseUser } from "firebase/auth";
 import TopNavigation from "../components/TopNavigation";
 import RegisterSteps from "../components/RegisterSteps";
+import RegisterHeader from "../components/RegisterHeader";
 
 export interface RegisterProps {}
 
@@ -66,6 +67,10 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
 
       <section>
         <RegisterSteps numberOfDots={5} />
+      </section>
+
+      <section>
+        <RegisterHeader headerText="Login details" />
       </section>
 
       <div>
