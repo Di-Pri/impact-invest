@@ -7,7 +7,7 @@ export interface AuthRouteProps {
   children: React.ReactNode;
 }
 
-const AuthRoutePage: React.FC<AuthRouteProps> = (props) => {
+const AuthRoute: React.FC<AuthRouteProps> = (props) => {
   const { children } = props;
   const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
@@ -28,4 +28,4 @@ const AuthRoutePage: React.FC<AuthRouteProps> = (props) => {
   return <>{children}</>;
 };
 
-export default AuthRoutePage;
+export default AuthRoute;

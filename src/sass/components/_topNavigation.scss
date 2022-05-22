@@ -1,0 +1,19 @@
+@use "../base" as b;
+
+.top-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+
+  button {
+    display: flex;
+    justify-content: center;
+    background: none;
+    border: none;
+  }
+
+  svg {
+    height: 17px;
+    width: auto;
+  }
+}

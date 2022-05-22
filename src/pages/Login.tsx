@@ -29,7 +29,7 @@ const LoginPage: React.FC<LoginProps> = (props) => {
     });
   }, [navigate]);
 
-  // Log in function
+  // Log in user function
   const login = async () => {
     setInputEmailName(false);
     setInputPasswordName(false);
