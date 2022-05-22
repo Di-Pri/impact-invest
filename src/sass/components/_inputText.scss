@@ -1,0 +1,73 @@
+@use "../base" as b;
+
+.input-text {
+  display: block;
+  border: none;
+  border-bottom: 1.5px solid b.$line-color;
+  padding-top: 7px;
+  padding-bottom: 8px;
+  background: none;
+  width: 100%;
+  font-family: b.$main-font-family;
+  font-weight: 500;
+  font-size: 18px;
+  &:focus {
+    outline: none;
+  }
+}
+
+// Styling input names
+@mixin input-names($down: true) {
+  text-align: left;
+  font-weight: 500;
+  color: b.$sec-text-color;
+  height: 20px;
+  margin-top: 13px;
+  @if $down {
+    font-size: 18px;
+    transform: translate(0, 27px);
+  } @else {
+    font-size: 15px;
+    transform: translate(0, 0);
+    animation: move 0.2s ease-in-out 1 forwards;
+  }
+}
+
+.input-names-down {
+  @include input-names($down: true);
+}
+.input-names-up {
+  @include input-names($down: false);
+}
+
+@keyframes move {
+  0% {
+    transform: translate(0, 27px);
+    font-size: 18px;
+  }
+  100% {
+    transform: translate(0, 0);
+    font-size: 15px;
+  }
+}
+
+// Input error animation
+.shake-input-name {
+  color: b.$error-color;
+  animation: shake 0.2s ease-in-out 1 forwards;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(0);
+  }
+  33% {
+    transform: translate(1.5px);
+  }
+  66% {
+    transform: translate(-1.5px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}

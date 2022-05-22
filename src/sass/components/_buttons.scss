@@ -15,6 +15,10 @@
   font-weight: 600;
   letter-spacing: 0.2px;
   margin: 18px auto;
+  &:disabled {
+    color: rgba(0, 0, 0, 0.779);
+    background-color: #9fa7b77c;
+  }
 }
 
 .text-button {

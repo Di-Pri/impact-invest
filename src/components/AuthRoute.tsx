@@ -21,7 +21,7 @@ const AuthRoutePage: React.FC<AuthRouteProps> = (props) => {
         navigate("/login");
       }
     });
-  }, []);
+  }, [navigate]);
 
   if (loading) return <p>loading...</p>;
 

@@ -12,11 +12,11 @@
     height: auto;
   }
 
-  h1 {
-    font-family: b.$logo-font-family;
-    font-size: 14vw;
-    font-weight: 900;
-    margin: 15px auto 0 auto;
-    font-style: italic;
+  div {
+    margin-top: 15px;
+    svg {
+      width: 83vw;
+      height: auto;
+    }
   }
 }

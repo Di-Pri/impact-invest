@@ -10,10 +10,6 @@
   display: flex;
   flex-direction: column;
 
-  .login-details {
-    margin-top: auto;
-  }
-
   .no-account {
     display: inline-flex;
     font-size: 15px;
@@ -22,22 +18,5 @@
 
   .login-inputs {
     margin-bottom: 25px;
-  }
-
-  input {
-    display: block;
-    border: none;
-    border-bottom: 1.5px solid b.$line-color;
-    padding-top: 25px;
-    padding-bottom: 8px;
-    margin-top: 15px;
-    background: none;
-    width: 100%;
-    font-family: b.$main-font-family;
-    font-weight: 500;
-    font-size: 18px;
-    &::placeholder {
-      color: b.$sec-text-color;
-    }
   }
 }

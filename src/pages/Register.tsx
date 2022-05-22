@@ -10,6 +10,7 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
   const [registerEmail, setRegisterEmail] = useState<string>("");
   const [registerPassword, setRegisterPassword] = useState<string>("");
   const [user, setUser] = useState<FirebaseUser | null>(null);
+  console.log("user", user);
 
   const navigate = useNavigate();
 
@@ -20,7 +21,7 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
         navigate("/");
       }
     });
-  }, []);
+  }, [navigate]);
 
   const register = async () => {
     try {
