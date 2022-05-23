@@ -61,34 +61,71 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
 
   return (
     <div className="register-page">
-      <section className="register-header">
-        <TopNavigation sendToPage="/login" />
-      </section>
+      <div className="details-section">
+        <section className="register-header">
+          <TopNavigation sendToPage="/login" />
+        </section>
 
-      <section>
-        <RegisterSteps numberOfDots={5} />
-      </section>
+        <section>
+          <RegisterSteps numberOfDots={5} />
+        </section>
 
-      <section>
-        <RegisterHeader headerText="Login details" />
-      </section>
+        <section>
+          <RegisterHeader headerText="Login details" />
+        </section>
 
-      <div>
-        <h3>Register user</h3>
-        <input
-          placeholder="Email..."
-          onChange={(event) => {
-            setRegisterEmail(event.target.value);
-          }}
-        />
-        <input
-          placeholder="Password..."
-          onChange={(event) => {
-            setRegisterPassword(event.target.value);
-          }}
-        />
+        <section className="register-inputs">
+          <div className={inputEmailName || registerEmail ? "input-names-up" : "input-names-down"} onClick={focusEmailInput}>
+            <p>Email</p>
+          </div>
+          <input
+            className="input-text"
+            type="email"
+            ref={emailInput}
+            onFocus={() => {
+              setInputEmailName(true);
+            }}
+            onBlur={() => {
+              setInputEmailName(false);
+            }}
+            onChange={(event) => {
+              setRegisterEmail(event.target.value);
+              setInputNameError("");
+            }}
+          />
+          {inputNameError.includes("invalid-email") ? <div className="input-error-message">Please enter a valid email address</div> : null}
+          {inputNameError.includes("email-already-in-use") ? (
+            <div className="input-error-message">
+              User with this email already exists.<span onClick={() => navigate("/login")}>Log in?</span>
+            </div>
+          ) : null}
 
-        <button onClick={register}>Create user</button>
+          <div className={inputPasswordName || registerPassword ? "input-names-up" : "input-names-down"} onClick={focusPasswordInput}>
+            <p>Password</p>
+          </div>
+          <input
+            className="input-text"
+            type="Password"
+            ref={passwordInput}
+            onFocus={() => {
+              setInputPasswordName(true);
+            }}
+            onBlur={() => {
+              setInputPasswordName(false);
+            }}
+            onChange={(event) => {
+              setRegisterPassword(event.target.value);
+              setInputNameError("");
+            }}
+          />
+          {inputNameError.includes("weak-password") ? <div className="input-error-message">Please provide stronger password</div> : null}
+        </section>
+      </div>
+
+      <div className="button-section">
+        <button className="large-button" disabled={!registerEmail || !registerPassword} onClick={register}>
+          Create user
+        </button>
       </div>
     </div>
   );

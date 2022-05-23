@@ -2,4 +2,19 @@
 
 .register-page {
   padding: 20px 10px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .details-section {
+    height: 100%;
+  }
+
+  .button-section {
+    margin-bottom: 30px;
+  }
+
+  .register-inputs {
+    margin-bottom: 25px;
+  }
 }

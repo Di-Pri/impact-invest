@@ -35,6 +35,7 @@ const LoginPage: React.FC<LoginProps> = (props) => {
     setInputPasswordName(false);
     try {
       const loggedUser = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+      console.log("loggedUser", loggedUser);
     } catch (error) {
       if (error instanceof Error) {
         console.log(error.message);
@@ -67,18 +68,16 @@ const LoginPage: React.FC<LoginProps> = (props) => {
       <section>
         <div className="login-inputs">
           <div className={inputEmailName || loginEmail ? "input-names-up" : "input-names-down"} onClick={focusEmailInput}>
-            <p className={inputNameError.includes("invalid-email") || inputNameError.includes("user-not-found") ? "shake-input-name" : ""}>
-              Email
-            </p>
+            <p>Email</p>
           </div>
           <input
             className="input-text"
             type="email"
             ref={emailInput}
-            onFocus={(e) => {
+            onFocus={() => {
               setInputEmailName(true);
             }}
-            onBlur={(e) => {
+            onBlur={() => {
               setInputEmailName(false);
             }}
             onChange={(event) => {
@@ -86,18 +85,24 @@ const LoginPage: React.FC<LoginProps> = (props) => {
               setInputNameError("");
             }}
           />
+          {inputNameError.includes("invalid-email") ? <div className="input-error-message">Please enter a valid email address</div> : null}
+          {inputNameError.includes("user-not-found") ? (
+            <div className="input-error-message">
+              There is no user with this email. <span onClick={() => navigate("/register")}>Sign up?</span>
+            </div>
+          ) : null}
 
           <div className={inputPasswordName || loginPassword ? "input-names-up" : "input-names-down"} onClick={focusPasswordInput}>
-            <p className={inputNameError.includes("wrong-password") ? "shake-input-name" : ""}>Password</p>
+            <p>Password</p>
           </div>
           <input
             className="input-text"
             type="Password"
             ref={passwordInput}
-            onFocus={(e) => {
+            onFocus={() => {
               setInputPasswordName(true);
             }}
-            onBlur={(e) => {
+            onBlur={() => {
               setInputPasswordName(false);
             }}
             onChange={(event) => {
@@ -105,6 +110,7 @@ const LoginPage: React.FC<LoginProps> = (props) => {
               setInputNameError("");
             }}
           />
+          {inputNameError.includes("wrong-password") ? <div className="input-error-message">Please enter the correct password</div> : null}
         </div>
 
         <button className="text-button">Forgot password?</button>
