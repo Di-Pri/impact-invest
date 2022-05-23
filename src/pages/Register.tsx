@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
-import { auth } from "../firebase-config";
-import { User as FirebaseUser } from "firebase/auth";
+import { auth, usersCollection } from "../firebase-config";
+import { doc, setDoc } from "@firebase/firestore";
 import TopNavigation from "../components/TopNavigation";
 import RegisterSteps from "../components/RegisterSteps";
 import RegisterHeader from "../components/RegisterHeader";
@@ -12,12 +12,11 @@ export interface RegisterProps {}
 const RegisterPage: React.FC<RegisterProps> = (props) => {
   const [registerEmail, setRegisterEmail] = useState<string>("");
   const [registerPassword, setRegisterPassword] = useState<string>("");
-  const [user, setUser] = useState<FirebaseUser | null>(null);
   const [inputEmailName, setInputEmailName] = useState<boolean>(false);
   const [inputPasswordName, setInputPasswordName] = useState<boolean>(false);
   const [inputNameError, setInputNameError] = useState<string>("");
+  const [emptyInput, setEmptyInput] = useState<string>("");
 
-  console.log("user", user);
   console.log("inputNameError", inputNameError);
 
   const navigate = useNavigate();
@@ -25,7 +24,6 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
   // Checking if there is a logged in user
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
       if (currentUser !== null) {
         navigate("/");
       }
@@ -38,7 +36,13 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
     setInputPasswordName(false);
     try {
       const newUser = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
-      console.log("newUser", newUser);
+
+      await setDoc(doc(usersCollection, newUser.user.uid), {
+        name: "Indira",
+        surname: "B",
+        email: "bla-bla",
+        input: emptyInput,
+      });
     } catch (error) {
       if (error instanceof Error) {
         console.log(error.message);
@@ -119,6 +123,14 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
             }}
           />
           {inputNameError.includes("weak-password") ? <div className="input-error-message">Please provide stronger password</div> : null}
+
+          <input
+            style={{ marginTop: "30px" }}
+            type="text"
+            onChange={(event) => {
+              setEmptyInput(event.target.value);
+            }}
+          />
         </section>
       </div>
 

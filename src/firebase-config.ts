@@ -1,5 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getFirestore, CollectionReference, collection, DocumentData } from "firebase/firestore";
+import { User } from "./types/User";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAwgOBKgHtLF32_9KSCcCkjtlXp4WoyE3k",
@@ -13,3 +15,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
+export const firestore = getFirestore();
+
+// Adding types to the db responses
+const createCollection = <T = DocumentData>(collectionName: string) => {
+  return collection(firestore, collectionName) as CollectionReference<T>;
+};
+
+export const usersCollection = createCollection<User>("users");
