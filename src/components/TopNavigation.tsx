@@ -11,7 +11,6 @@ export interface TopNavigationProps {
 
 const TopNavigation: React.FC<TopNavigationProps> = (props) => {
   const navigate = useNavigate();
-  console.log("props.sendToPafe", props.sendToPage);
   return (
     <div className="top-navigation">
       <section>

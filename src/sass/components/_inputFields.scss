@@ -121,17 +121,17 @@
     border: 1.5px solid b.$line-color;
   }
 
-  .checkmark:after {
+  .checkmark::after {
     content: "";
     position: absolute;
     display: none;
   }
 
-  .container input:checked ~ .checkmark:after {
+  .container input:checked ~ .checkmark::after {
     display: block;
   }
 
-  .container .checkmark:after {
+  .container .checkmark::after {
     left: 5px;
     top: 1.1px;
     width: 5px;
@@ -148,6 +148,47 @@
     font-weight: 450;
     span {
       color: b.$sec-text-color;
+    }
+  }
+}
+
+// Country of residence radio inputs
+.country-of-residence {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 2.2vh;
+  label {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1.5px solid b.$line-color;
+    padding-bottom: 1.7vh;
+    padding-top: 4.7vh;
+    font-size: 22px;
+    font-weight: 300;
+    position: relative;
+
+    input {
+      width: 0;
+      height: 0;
+    }
+
+    span.showCheckMark {
+      position: absolute;
+      margin-left: 25px;
+      margin-top: 3px;
+    }
+
+    span.showCheckMark::before {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 16px;
+      border: 1px solid black;
+      border-width: 0 1.5px 1.5px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
     }
   }
 }

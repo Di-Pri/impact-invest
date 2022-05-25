@@ -16,15 +16,52 @@ const CountryOfResidence: React.FC<CountryOfResidenceProps> = (props) => {
     } else {
       props.setButtonDisabled(true);
     }
+    if (props.userData.country === "Other") {
+      props.setButtonDisabled(true);
+    }
   }, [props]);
 
   return (
-    <div>
-      <input
-        type="text"
-        value={props.userData.country}
-        onChange={(e: ChangeEvent<HTMLInputElement>) => props.setUserData({ ...props.userData, country: e.target.value })}
-      />
+    <div className="country-of-residence">
+      <label>
+        Denmark
+        <span className={props.userData.country === "Denmark" ? "showCheckMark" : ""}></span>
+        <input
+          type="radio"
+          value="Denmark"
+          name="country"
+          onChange={(e: ChangeEvent<HTMLInputElement>) => props.setUserData({ ...props.userData, country: e.target.value })}
+        />
+      </label>
+      <label>
+        Sweden
+        <span className={props.userData.country === "Sweden" ? "showCheckMark" : ""}></span>
+        <input
+          type="radio"
+          value="Sweden"
+          name="country"
+          onChange={(e: ChangeEvent<HTMLInputElement>) => props.setUserData({ ...props.userData, country: e.target.value })}
+        />
+      </label>
+      <label>
+        Norway
+        <span className={props.userData.country === "Norway" ? "showCheckMark" : ""}></span>
+        <input
+          type="radio"
+          value="Norway"
+          name="country"
+          onChange={(e: ChangeEvent<HTMLInputElement>) => props.setUserData({ ...props.userData, country: e.target.value })}
+        />
+      </label>
+      <label>
+        Other
+        <input
+          type="radio"
+          value="Other"
+          name="country"
+          onChange={(e: ChangeEvent<HTMLInputElement>) => props.setUserData({ ...props.userData, country: e.target.value })}
+        />
+      </label>
     </div>
   );
 };

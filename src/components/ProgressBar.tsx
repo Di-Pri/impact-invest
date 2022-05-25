@@ -6,7 +6,7 @@ export interface ProgressBarProps {
 
 const ProgressBar: React.FC<ProgressBarProps> = (props) => {
   return (
-    <section className="register-steps">
+    <section className="progress-bar">
       <div className={props.numberOfDots > 0 ? "dark" : "light"}></div>
       <div className={props.numberOfDots > 1 ? "dark" : "light"}></div>
       <div className={props.numberOfDots > 2 ? "dark" : "light"}></div>

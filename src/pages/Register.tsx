@@ -128,7 +128,6 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
           onClick={() => {
             if (step === formHeaders.length - 1) {
               register();
-              console.log("Submitted");
             } else {
               setStep((currentStep) => currentStep + 1);
             }
