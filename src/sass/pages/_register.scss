@@ -17,4 +17,23 @@
   .register-inputs {
     margin-bottom: 25px;
   }
+
+  .register-header {
+    text-align: center;
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+    }
+    .blue-cloud {
+      width: 196px;
+      height: 25px;
+      filter: blur(16px);
+      background-color: rgba(173, 214, 238, 0.38);
+      margin-top: -6px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      z-index: -1;
+    }
+  }
 }

@@ -34,8 +34,7 @@ const LoginPage: React.FC<LoginProps> = (props) => {
     setInputEmailName(false);
     setInputPasswordName(false);
     try {
-      const loggedUser = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
-      console.log("loggedUser", loggedUser);
+      await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
     } catch (error) {
       if (error instanceof Error) {
         console.log(error.message);

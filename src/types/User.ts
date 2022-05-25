@@ -1,6 +1,11 @@
 export interface User {
-  name: string;
+  country: string;
+  firstName: string;
   surname: string;
+  dateOfBirth: string;
+  personalNumber: string;
+  userValues: string;
   email: string;
-  input: string;
+  password: string;
+  cookies: string;
 }
