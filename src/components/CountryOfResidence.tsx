@@ -1,5 +1,6 @@
-import React, { useEffect, ChangeEvent, Dispatch, SetStateAction } from "react";
+import React, { useEffect, useState, ChangeEvent, Dispatch, SetStateAction } from "react";
 import { User } from "../types/User";
+import { DoneIcon } from "../assets";
 
 export interface CountryOfResidenceProps {
   userData: User;
@@ -19,8 +20,6 @@ const CountryOfResidence: React.FC<CountryOfResidenceProps> = (props) => {
 
   return (
     <div>
-      <div>Country Of Residence</div>
-
       <input
         type="text"
         value={props.userData.country}

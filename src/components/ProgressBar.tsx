@@ -1,11 +1,10 @@
 import React from "react";
 
-export interface RegisterStepsProps {
+export interface ProgressBarProps {
   numberOfDots: number;
 }
 
-const RegisterSteps: React.FC<RegisterStepsProps> = (props) => {
-  console.log("props.numberOfDots", props.numberOfDots);
+const ProgressBar: React.FC<ProgressBarProps> = (props) => {
   return (
     <section className="register-steps">
       <div className={props.numberOfDots > 0 ? "dark" : "light"}></div>
@@ -18,4 +17,4 @@ const RegisterSteps: React.FC<RegisterStepsProps> = (props) => {
   );
 };
 
-export default RegisterSteps;
+export default ProgressBar;

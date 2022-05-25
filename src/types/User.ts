@@ -7,5 +7,5 @@ export interface User {
   userValues: string;
   email: string;
   password: string;
-  cookies: string;
+  cookies: boolean;
 }

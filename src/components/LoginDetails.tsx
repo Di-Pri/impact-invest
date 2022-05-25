@@ -33,7 +33,7 @@ const LoginDetails: React.FC<LoginDetailsProps> = (props) => {
 
   // Disabling the button when input field is empty
   useEffect(() => {
-    if (props.userData.email.length !== 0 && props.userData.password.length !== 0) {
+    if (props.userData.email.length !== 0 && props.userData.password.length !== 0 && props.userData.cookies !== false) {
       props.setButtonDisabled(false);
     } else {
       props.setButtonDisabled(true);
@@ -41,9 +41,12 @@ const LoginDetails: React.FC<LoginDetailsProps> = (props) => {
   }, [props]);
 
   return (
-    <div>
-      <div className="details-section">
-        <div className={inputEmailName || props.registerEmail ? "input-names-up" : "input-names-down"} onClick={focusEmailInput}>
+    <div className="details-section">
+      <section>
+        <div
+          className={props.registerEmail ? "input-names-up-fixed" : inputEmailName ? "input-names-up" : "input-names-down"}
+          onClick={focusEmailInput}
+        >
           <p>Email</p>
         </div>
         <input
@@ -71,13 +74,18 @@ const LoginDetails: React.FC<LoginDetailsProps> = (props) => {
             User with this email already exists.<span onClick={() => navigate("/login")}>Log in?</span>
           </div>
         ) : null}
+      </section>
 
-        <div className={inputPasswordName || props.registerPassword ? "input-names-up" : "input-names-down"} onClick={focusPasswordInput}>
+      <section>
+        <div
+          className={props.registerPassword ? "input-names-up-fixed" : inputPasswordName ? "input-names-up" : "input-names-down"}
+          onClick={focusPasswordInput}
+        >
           <p>Password</p>
         </div>
         <input
           className="input-text"
-          type="Password"
+          type="password"
           ref={passwordInput}
           value={props.userData.password}
           onFocus={() => {
@@ -95,7 +103,22 @@ const LoginDetails: React.FC<LoginDetailsProps> = (props) => {
         {props.inputNameError.includes("weak-password") ? (
           <div className="input-error-message">Please provide stronger password</div>
         ) : null}
-      </div>
+      </section>
+      <section className="cookies">
+        <label className="container">
+          <input
+            type="checkbox"
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              props.setUserData({ ...props.userData, cookies: e.target.checked });
+            }}
+          />
+          <span className="checkmark"></span>
+        </label>
+
+        <p>
+          I accept the <span>Privacy Policy</span> and <span>Cookies Policy</span>
+        </p>
+      </section>
     </div>
   );
 };

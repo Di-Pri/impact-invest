@@ -16,7 +16,7 @@ const TopNavigation: React.FC<TopNavigationProps> = (props) => {
     <div className="top-navigation">
       <section>
         {props.goBack ? (
-          <button disabled={props.currentStep === 0} className="back-button" onClick={props.goBack}>
+          <button style={{ display: props.currentStep === 0 ? "none" : "block" }} className="back-button" onClick={props.goBack}>
             <BackIcon />
           </button>
         ) : (

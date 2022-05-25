@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/aut
 import { auth, usersCollection } from "../firebase-config";
 import { doc, setDoc } from "@firebase/firestore";
 import TopNavigation from "../components/TopNavigation";
-import RegisterSteps from "../components/RegisterSteps";
+import ProgressBar from "../components/ProgressBar";
 import CountryOfResidence from "../components/CountryOfResidence";
 import NameAsInPassport from "../components/NameAsInPassport";
 import DateOfBirth from "../components/DateOfBirth";
@@ -40,7 +40,7 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
     userValues: "",
     email: "",
     password: "",
-    cookies: "",
+    cookies: false,
   });
   console.log("userData", userData);
 
@@ -105,12 +105,12 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
   return (
     <div className="register-page">
       <div className="details-section">
-        <section className="register-header">
+        <section>
           <TopNavigation sendToPage="/login" goBack={goBack} currentStep={step} />
         </section>
 
         <section>
-          <RegisterSteps numberOfDots={step + 1} />
+          <ProgressBar numberOfDots={step + 1} />
         </section>
 
         <section className="register-header">
@@ -121,7 +121,7 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
         <section className="register-inputs">{displayFormStep()}</section>
       </div>
 
-      <div className="button-section">
+      <section className="button-section">
         <button
           disabled={buttonDisabled}
           className="large-button"
@@ -136,7 +136,7 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
         >
           {step === formHeaders.length - 1 ? "Create account" : "Continue"}
         </button>
-      </div>
+      </section>
     </div>
   );
 };
