@@ -97,11 +97,16 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
     }
   };
 
+  // Going to previous step in a form
+  const goBack = () => {
+    setStep((currentStep) => currentStep - 1);
+  };
+
   return (
     <div className="register-page">
       <div className="details-section">
         <section className="register-header">
-          <TopNavigation sendToPage="/login" />
+          <TopNavigation sendToPage="/login" goBack={goBack} currentStep={step} />
         </section>
 
         <section>
@@ -117,15 +122,6 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
       </div>
 
       <div className="button-section">
-        <button
-          className="large-button"
-          disabled={step === 0}
-          onClick={() => {
-            setStep((currentStep) => currentStep - 1);
-          }}
-        >
-          Prev
-        </button>
         <button
           disabled={buttonDisabled}
           className="large-button"

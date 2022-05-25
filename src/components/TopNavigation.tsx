@@ -4,6 +4,8 @@ import { BackIcon, CrossIcon } from "../assets";
 
 export interface TopNavigationProps {
   sendToPage?: string;
+  goBack?: () => void;
+  currentStep?: number;
   onClick?: () => void;
 }
 
@@ -13,9 +15,15 @@ const TopNavigation: React.FC<TopNavigationProps> = (props) => {
   return (
     <div className="top-navigation">
       <section>
-        <button className="back-button" onClick={() => navigate(-1)}>
-          <BackIcon />
-        </button>
+        {props.goBack ? (
+          <button disabled={props.currentStep === 0} className="back-button" onClick={props.goBack}>
+            <BackIcon />
+          </button>
+        ) : (
+          <button className="back-button" onClick={() => navigate(-1)}>
+            <BackIcon />
+          </button>
+        )}
       </section>
       <section>
         {props.sendToPage ? (
