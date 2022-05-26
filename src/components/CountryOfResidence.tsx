@@ -1,6 +1,7 @@
-import React, { useEffect, useState, ChangeEvent, Dispatch, SetStateAction } from "react";
+import React, { useEffect, useState, useRef, ChangeEvent, Dispatch, SetStateAction } from "react";
 import { User } from "../types/User";
 import PopUp from "./PopUp";
+import { CSSTransition } from "react-transition-group";
 
 export interface CountryOfResidenceProps {
   userData: User;
@@ -22,6 +23,10 @@ const CountryOfResidence: React.FC<CountryOfResidenceProps> = (props) => {
       props.setButtonDisabled(true);
     }
   }, [props]);
+
+  // Passing nodeRef to CSSTransition
+  const nodeRef = useRef(null);
+  const nodeRef2 = useRef(null);
 
   return (
     <div className="country-of-residence">
@@ -69,7 +74,12 @@ const CountryOfResidence: React.FC<CountryOfResidenceProps> = (props) => {
           }}
         />
       </label>
-      {popUpOpen ? <PopUp setPopUpOpen={setPopUpOpen} /> : null}
+      <CSSTransition in={popUpOpen} timeout={300} classNames="alert2" unmountOnExit nodeRef={nodeRef2}>
+        <div className="blur-background" ref={nodeRef2}></div>
+      </CSSTransition>
+      <CSSTransition in={popUpOpen} timeout={300} classNames="alert" unmountOnExit nodeRef={nodeRef}>
+        <PopUp setPopUpOpen={setPopUpOpen} nodeRef={nodeRef} />
+      </CSSTransition>
     </div>
   );
 };
