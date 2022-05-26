@@ -1,0 +1,50 @@
+@use "../base" as b;
+
+.pop-up {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  background-color: rgba(159, 167, 183, 0.441);
+
+  position: absolute;
+  .message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: b.$bg-color;
+    border-radius: 8px;
+    box-shadow: 4px 4px 16px 0 rgb(21, 29, 37, 0.16);
+    padding: 9vh 5vh 5vh 5vh;
+    width: 100%;
+    height: 55vh;
+    h2 {
+      font-size: 28px;
+      font-weight: 700;
+    }
+    p {
+      font-size: 17px;
+      font-weight: 350;
+      margin-bottom: 5vh;
+      text-align: center;
+      line-height: 5vh;
+    }
+    button {
+      width: 21px;
+      height: 21px;
+      border: none;
+      background: none;
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}

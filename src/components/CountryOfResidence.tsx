@@ -1,6 +1,6 @@
 import React, { useEffect, useState, ChangeEvent, Dispatch, SetStateAction } from "react";
 import { User } from "../types/User";
-import { DoneIcon } from "../assets";
+import PopUp from "./PopUp";
 
 export interface CountryOfResidenceProps {
   userData: User;
@@ -9,6 +9,8 @@ export interface CountryOfResidenceProps {
 }
 
 const CountryOfResidence: React.FC<CountryOfResidenceProps> = (props) => {
+  const [popUpOpen, setPopUpOpen] = useState(false);
+
   // Disabling the button when input field is empty
   useEffect(() => {
     if (props.userData.country.length !== 0) {
@@ -59,9 +61,15 @@ const CountryOfResidence: React.FC<CountryOfResidenceProps> = (props) => {
           type="radio"
           value="Other"
           name="country"
-          onChange={(e: ChangeEvent<HTMLInputElement>) => props.setUserData({ ...props.userData, country: e.target.value })}
+          onClick={() => {
+            setPopUpOpen(true);
+          }}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            props.setUserData({ ...props.userData, country: e.target.value });
+          }}
         />
       </label>
+      {popUpOpen ? <PopUp setPopUpOpen={setPopUpOpen} /> : null}
     </div>
   );
 };
