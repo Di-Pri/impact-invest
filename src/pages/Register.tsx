@@ -42,7 +42,6 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
     password: "",
     cookies: false,
   });
-  console.log("userData", userData);
 
   const displayFormStep = () => {
     if (step === 0) {
@@ -124,7 +123,7 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
       <section className="button-section">
         <button
           disabled={buttonDisabled}
-          className="large-button"
+          className={buttonDisabled ? "large-button" : "large-button animate-button"}
           onClick={() => {
             if (step === formHeaders.length - 1) {
               register();

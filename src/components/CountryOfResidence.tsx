@@ -27,12 +27,17 @@ const CountryOfResidence: React.FC<CountryOfResidenceProps> = (props) => {
   // Passing nodeRef to CSSTransition
   const nodeRef = useRef(null);
   const nodeRef2 = useRef(null);
+  const nodeRef3 = useRef(null);
+  const nodeRef4 = useRef(null);
+  const nodeRef5 = useRef(null);
 
   return (
     <div className="country-of-residence">
       <label>
         Denmark
-        <span className={props.userData.country === "Denmark" ? "showCheckMark" : ""}></span>
+        <CSSTransition in={props.userData.country === "Denmark"} timeout={300} classNames="alert3" unmountOnExit nodeRef={nodeRef3}>
+          <span className={props.userData.country === "Denmark" ? "showCheckMark" : ""} ref={nodeRef3}></span>
+        </CSSTransition>
         <input
           type="radio"
           value="Denmark"
@@ -42,7 +47,9 @@ const CountryOfResidence: React.FC<CountryOfResidenceProps> = (props) => {
       </label>
       <label>
         Sweden
-        <span className={props.userData.country === "Sweden" ? "showCheckMark" : ""}></span>
+        <CSSTransition in={props.userData.country === "Sweden"} timeout={300} classNames="alert3" unmountOnExit nodeRef={nodeRef4}>
+          <span className={props.userData.country === "Sweden" ? "showCheckMark" : ""} ref={nodeRef4}></span>
+        </CSSTransition>
         <input
           type="radio"
           value="Sweden"
@@ -52,7 +59,9 @@ const CountryOfResidence: React.FC<CountryOfResidenceProps> = (props) => {
       </label>
       <label>
         Norway
-        <span className={props.userData.country === "Norway" ? "showCheckMark" : ""}></span>
+        <CSSTransition in={props.userData.country === "Norway"} timeout={300} classNames="alert3" unmountOnExit nodeRef={nodeRef5}>
+          <span className={props.userData.country === "Norway" ? "showCheckMark" : ""} ref={nodeRef5}></span>
+        </CSSTransition>
         <input
           type="radio"
           value="Norway"

@@ -21,6 +21,22 @@
   }
 }
 
+.animate-button.large-button {
+  animation: button-transition 0.12s ease-in-out 1 forwards;
+}
+
+@keyframes button-transition {
+  0% {
+    color: rgba(0, 0, 0, 0.779);
+    background-color: #9fa7b77c;
+  }
+
+  100% {
+    color: b.$bg-color;
+    background-color: b.$app-main-color;
+  }
+}
+
 .text-button {
   background: none;
   border: none;
