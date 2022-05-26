@@ -15,8 +15,7 @@ const LoginPage: React.FC<LoginProps> = (props) => {
   const [inputPasswordName, setInputPasswordName] = useState<boolean>(false);
   const [inputNameError, setInputNameError] = useState<string>("");
 
-  console.log("user", user);
-  console.log("inputNameError", inputNameError);
+  console.log("Current user", user);
   const navigate = useNavigate();
 
   // Checking if there is a logged in user
@@ -73,6 +72,8 @@ const LoginPage: React.FC<LoginProps> = (props) => {
             className="input-text"
             type="email"
             ref={emailInput}
+            id="login-email"
+            maxLength={30}
             onFocus={() => {
               setInputEmailName(true);
             }}
@@ -98,6 +99,8 @@ const LoginPage: React.FC<LoginProps> = (props) => {
             className="input-text"
             type="Password"
             ref={passwordInput}
+            id="login-password"
+            maxLength={30}
             onFocus={() => {
               setInputPasswordName(true);
             }}

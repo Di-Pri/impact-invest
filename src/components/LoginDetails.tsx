@@ -53,6 +53,8 @@ const LoginDetails: React.FC<LoginDetailsProps> = (props) => {
           className="input-text"
           type="email"
           ref={emailInput}
+          id="signup-email"
+          maxLength={30}
           value={props.userData.email}
           onFocus={() => {
             setInputEmailName(true);
@@ -87,6 +89,8 @@ const LoginDetails: React.FC<LoginDetailsProps> = (props) => {
           className="input-text"
           type="password"
           ref={passwordInput}
+          id="signup-password"
+          maxLength={30}
           value={props.userData.password}
           onFocus={() => {
             setInputPasswordName(true);
