@@ -30,7 +30,7 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
     "Country of residence",
     "Name as in passport",
     "Date of birth",
-    "Personal identity number",
+    "Identification number",
     "Your values",
     "Login details",
   ];
@@ -47,7 +47,7 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
     cookies: false,
   });
 
-  console.log("userData.dateOfBirth)", userData.dateOfBirth);
+  console.log("userData.personalNumber)", userData.personalNumber);
 
   const displayFormStep = () => {
     if (step === 0) {

@@ -24,14 +24,14 @@ const DateOfBirth: React.FC<DateOfBirthProps> = (props) => {
       props.setButtonDisabled(true);
     }
 
-    // Validating the date and users age
+    // Validating date and users age
     const splitDate = props.userData.dateOfBirth.split("/");
     const day = Number(splitDate[0]);
     const month = Number(splitDate[1]) - 1;
     const year = Number(splitDate[2]);
     let birthDate = new Date(year, month, day);
 
-    // Validating the date date format
+    // Validating date format
     if (year > 2021 || year < 1900 || month > 11 || day > 31) {
       console.log("Invalid date");
       props.setInputNameError("Invalid date");
@@ -67,7 +67,6 @@ const DateOfBirth: React.FC<DateOfBirthProps> = (props) => {
         allowEmptyFormatting
         mask="_"
         format="##/##/####"
-        placeholder="DD/MM/YYYY"
         allowNegative={false}
         value={props.userData.dateOfBirth}
         onChange={(e: ChangeEvent<HTMLInputElement>) => {

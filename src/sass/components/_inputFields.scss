@@ -212,9 +212,28 @@
       color: b.$sec-text-color;
     }
   }
-  .output {
-    width: 70vw;
-    height: 50px;
-    background-color: beige;
+}
+
+// Personal number component
+.personal-number {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4vh;
+  .personal-number-input {
+    background: none;
+    width: 95vw;
+    border: none;
+    font-size: 36px;
+    text-align: center;
+    letter-spacing: 6px;
+    color: b.$sec-text-color;
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      color: b.$sec-text-color;
+    }
   }
 }
