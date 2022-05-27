@@ -30,7 +30,6 @@
     color: rgba(0, 0, 0, 0.779);
     background-color: #9fa7b77c;
   }
-
   100% {
     color: b.$bg-color;
     background-color: b.$app-main-color;
@@ -45,4 +44,22 @@
   font-family: b.$main-font-family;
   font-weight: 500;
   margin-bottom: 10px;
+}
+
+// Pop up button
+.pop-up-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70vw;
+  height: 54px;
+  background-color: b.$app-secondary-color;
+  border: none;
+  border-radius: 9px;
+  font-size: 17px;
+  color: #000;
+  font-family: b.$main-font-family;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  margin: 18px auto;
 }

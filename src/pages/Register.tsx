@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { auth, usersCollection } from "../firebase-config";
@@ -12,6 +12,8 @@ import PersonaNumber from "../components/PersonalNumber";
 import UserValues from "../components/UserValues";
 import LoginDetails from "../components/LoginDetails";
 import { User } from "../types/User";
+import PopUp from "../components/PopUp";
+import { CSSTransition } from "react-transition-group";
 
 export interface RegisterProps {}
 
@@ -21,6 +23,8 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
   const [registerPassword, setRegisterPassword] = useState<string>("");
   const [inputNameError, setInputNameError] = useState<string>("");
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
+  const [userTooYoungError, setUserTooYoungError] = useState(false);
+  const [popUpOpen, setPopUpOpen] = useState(false);
 
   const formHeaders = [
     "Country of residence",
@@ -43,13 +47,24 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
     cookies: false,
   });
 
+  console.log("userData.dateOfBirth)", userData.dateOfBirth);
+
   const displayFormStep = () => {
     if (step === 0) {
       return <CountryOfResidence userData={userData} setUserData={setUserData} setButtonDisabled={setButtonDisabled} />;
     } else if (step === 1) {
       return <NameAsInPassport userData={userData} setUserData={setUserData} setButtonDisabled={setButtonDisabled} />;
     } else if (step === 2) {
-      return <DateOfBirth userData={userData} setUserData={setUserData} setButtonDisabled={setButtonDisabled} />;
+      return (
+        <DateOfBirth
+          userData={userData}
+          setUserData={setUserData}
+          setButtonDisabled={setButtonDisabled}
+          setUserTooYoungError={setUserTooYoungError}
+          inputNameError={inputNameError}
+          setInputNameError={setInputNameError}
+        />
+      );
     } else if (step === 3) {
       return <PersonaNumber userData={userData} setUserData={setUserData} setButtonDisabled={setButtonDisabled} />;
     } else if (step === 4) {
@@ -99,7 +114,12 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
   // Going to previous step in a form
   const goBack = () => {
     setStep((currentStep) => currentStep - 1);
+    setUserTooYoungError(false);
   };
+
+  // Passing refs to CSSTransition
+  const nodeRef = useRef(null);
+  const nodeRef2 = useRef(null);
 
   return (
     <div className="register-page">
@@ -127,6 +147,8 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
           onClick={() => {
             if (step === formHeaders.length - 1) {
               register();
+            } else if (userTooYoungError) {
+              setPopUpOpen(true);
             } else {
               setStep((currentStep) => currentStep + 1);
             }
@@ -135,6 +157,17 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
           {step === formHeaders.length - 1 ? "Create account" : "Continue"}
         </button>
       </section>
+      <CSSTransition in={popUpOpen} timeout={300} classNames="alert2" unmountOnExit nodeRef={nodeRef2}>
+        <div className="blur-background" ref={nodeRef2}></div>
+      </CSSTransition>
+      <CSSTransition in={popUpOpen} timeout={300} classNames="alert" unmountOnExit nodeRef={nodeRef}>
+        <PopUp
+          setPopUpOpen={setPopUpOpen}
+          nodeRef={nodeRef}
+          message="You must be over 18 to create your own brokerage account. You may have a guardian who will open an account for you."
+          button="Open guardian account"
+        />
+      </CSSTransition>
     </div>
   );
 };

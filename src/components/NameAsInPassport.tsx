@@ -32,7 +32,7 @@ const NameAsInPassport: React.FC<NameAsInPassportProps> = (props) => {
   }, [props]);
 
   return (
-    <div>
+    <div className="name-as-in-passport">
       <section>
         <div
           className={props.userData.firstName ? "input-names-up-fixed" : inputFirstNameName ? "input-names-up" : "input-names-down"}
@@ -55,7 +55,7 @@ const NameAsInPassport: React.FC<NameAsInPassportProps> = (props) => {
             setInputFirstNameName(false);
           }}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            props.setUserData({ ...props.userData, firstName: e.target.value });
+            props.setUserData({ ...props.userData, firstName: e.target.value.replace(/[^a-zA-Zæøå\s]*$/gi, "") });
           }}
         />
       </section>
@@ -82,7 +82,7 @@ const NameAsInPassport: React.FC<NameAsInPassportProps> = (props) => {
             setInputSurnameName(false);
           }}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            props.setUserData({ ...props.userData, surname: e.target.value });
+            props.setUserData({ ...props.userData, surname: e.target.value.replace(/[^a-zA-Zæøå\s]*$/gi, "") });
           }}
         />
       </section>

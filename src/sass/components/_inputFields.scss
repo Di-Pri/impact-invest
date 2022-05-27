@@ -31,7 +31,6 @@
     transform: translate(0, 0);
   }
 }
-
 .input-names-down {
   @include input-names($down: true);
 }
@@ -39,11 +38,9 @@
   @include input-names($down: false);
   animation: move 0.2s ease-in-out 1 forwards;
 }
-
 .input-names-up-fixed {
   @include input-names($down: false);
 }
-
 @keyframes move {
   0% {
     transform: translate(0, 27px);
@@ -55,6 +52,11 @@
   }
 }
 
+// Name as in passport component
+.name-as-in-passport {
+  margin-top: 5vh;
+}
+
 // Input error message
 .input-error-message {
   font-size: 13px;
@@ -64,12 +66,10 @@
   font-weight: 500;
   text-align: left;
   animation: shake 0.2s ease-in-out 1 forwards;
-
   span {
     color: b.$sec-text-color;
   }
 }
-
 @keyframes shake {
   0% {
     transform: translate(0);
@@ -103,14 +103,12 @@
     -ms-user-select: none;
     user-select: none;
   }
-
   .container input {
     position: absolute;
     opacity: 0;
     height: 0;
     width: 0;
   }
-
   .checkmark {
     position: absolute;
     top: 0;
@@ -120,17 +118,14 @@
     background: none;
     border: 1.5px solid b.$line-color;
   }
-
   .checkmark::after {
     content: "";
     position: absolute;
     display: none;
   }
-
   .container input:checked ~ .checkmark::after {
     display: block;
   }
-
   .container .checkmark::after {
     left: 5px;
     top: 1.1px;
@@ -142,7 +137,6 @@
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
   }
-
   p {
     font-size: 13px;
     font-weight: 450;
@@ -157,7 +151,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 2.2vh;
   label {
     width: 100%;
     text-align: center;
@@ -167,18 +160,15 @@
     font-size: 22px;
     font-weight: 300;
     position: relative;
-
     input {
       width: 0;
       height: 0;
     }
-
     span.showCheckMark {
       position: absolute;
       margin-left: 25px;
       margin-top: 3px;
     }
-
     span.showCheckMark::before {
       content: "";
       position: absolute;
@@ -190,5 +180,41 @@
       -ms-transform: rotate(45deg);
       transform: rotate(45deg);
     }
+  }
+}
+
+// Date of birth component
+.date-of-birth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4vh;
+  // .keyboard-grid {
+  //   display: grid;
+  //   width: 70%;
+  //   grid-template-columns: repeat(3, 1fr);
+  //   grid-template-rows: repeat(4, 50px);
+  // }
+  .date-of-birth-input {
+    background: none;
+    width: 80vw;
+    border: none;
+    font-size: 36px;
+    text-align: center;
+    letter-spacing: 8px;
+    color: b.$sec-text-color;
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      color: b.$sec-text-color;
+    }
+  }
+  .output {
+    width: 70vw;
+    height: 50px;
+    background-color: beige;
   }
 }

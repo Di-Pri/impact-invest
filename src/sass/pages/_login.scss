@@ -9,13 +9,11 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-
   .no-account {
     display: inline-flex;
     font-size: 15px;
     gap: 3px;
   }
-
   .login-inputs {
     margin-bottom: 25px;
     height: 145px;

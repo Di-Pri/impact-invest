@@ -41,7 +41,7 @@ const LoginDetails: React.FC<LoginDetailsProps> = (props) => {
   }, [props]);
 
   return (
-    <div className="details-section">
+    <div className="login-details">
       <section>
         <div
           className={props.registerEmail ? "input-names-up-fixed" : inputEmailName ? "input-names-up" : "input-names-down"}

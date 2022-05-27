@@ -24,7 +24,7 @@ const CountryOfResidence: React.FC<CountryOfResidenceProps> = (props) => {
     }
   }, [props]);
 
-  // Passing nodeRef to CSSTransition
+  // Passing refs to CSSTransition component
   const nodeRef = useRef(null);
   const nodeRef2 = useRef(null);
   const nodeRef3 = useRef(null);
@@ -87,7 +87,11 @@ const CountryOfResidence: React.FC<CountryOfResidenceProps> = (props) => {
         <div className="blur-background" ref={nodeRef2}></div>
       </CSSTransition>
       <CSSTransition in={popUpOpen} timeout={300} classNames="alert" unmountOnExit nodeRef={nodeRef}>
-        <PopUp setPopUpOpen={setPopUpOpen} nodeRef={nodeRef} />
+        <PopUp
+          setPopUpOpen={setPopUpOpen}
+          nodeRef={nodeRef}
+          message="At the moment we only offer our services to residents of Denmark, Sweden and Norway."
+        />
       </CSSTransition>
     </div>
   );
