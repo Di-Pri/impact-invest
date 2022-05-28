@@ -4,7 +4,7 @@ export interface User {
   surname: string;
   dateOfBirth: string;
   personalNumber: string;
-  userValues: string;
+  userValues: string[];
   email: string;
   password: string;
   cookies: boolean;

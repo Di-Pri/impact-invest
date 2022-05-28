@@ -41,11 +41,13 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
     surname: "",
     dateOfBirth: "",
     personalNumber: "",
-    userValues: "",
+    userValues: [],
     email: "",
     password: "",
     cookies: false,
   });
+
+  console.log("userData", userData);
 
   const displayFormStep = () => {
     if (step === 0) {
@@ -99,7 +101,6 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
   const register = async () => {
     try {
       const newUser = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
-
       await setDoc(doc(usersCollection, newUser.user.uid), userData);
     } catch (error) {
       if (error instanceof Error) {

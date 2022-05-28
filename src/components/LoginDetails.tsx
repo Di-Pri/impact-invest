@@ -73,7 +73,16 @@ const LoginDetails: React.FC<LoginDetailsProps> = (props) => {
     } else {
       setPassNumber(false);
     }
-  }, [props, showPassHelper, passUppercase, passLowercase, passNumber, passCharacters]);
+
+    // Hiding password helper when
+    if (inputPasswordName) {
+      if (!passUppercase || !passLowercase || !passNumber || !passCharacters) {
+        setShowPassHelper(true);
+      } else {
+        setShowPassHelper(false);
+      }
+    }
+  }, [props, showPassHelper, passUppercase, passLowercase, passNumber, passCharacters, inputPasswordName]);
 
   return (
     <div className="login-details">
@@ -158,9 +167,6 @@ const LoginDetails: React.FC<LoginDetailsProps> = (props) => {
             </p>
           </div>
         ) : null}
-        {/* {props.inputNameError.includes("weak-password") ? (
-          <div className="input-error-message">Please provide stronger password</div>
-        ) : null} */}
       </section>
       <section className="cookies">
         <label className="container">
