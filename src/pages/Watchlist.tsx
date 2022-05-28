@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase-config";
 //import { User as FirebaseUser } from "firebase/auth";
+import BottomNavigation from "../components/BottomNavigation";
 
 export interface WatchlistProps {}
 
@@ -20,6 +21,7 @@ const WatchlistPage: React.FC<WatchlistProps> = (props) => {
   return (
     <div className="watchlist-page">
       <p>Watchlist page</p>
+      <BottomNavigation />
     </div>
   );
 };

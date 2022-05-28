@@ -10,6 +10,14 @@ img {
   user-select: none;
 }
 
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
 body {
   background-color: c.$bg-color;
   color: c.$main-text-color;
