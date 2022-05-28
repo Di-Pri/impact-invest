@@ -92,7 +92,7 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
       if (currentUser !== null) {
-        navigate("/");
+        navigate("/congratulations");
       }
     });
   }, [navigate]);

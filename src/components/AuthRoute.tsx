@@ -17,7 +17,6 @@ const AuthRoute: React.FC<AuthRouteProps> = (props) => {
       if (currentUser) {
         setLoading(false);
       } else {
-        console.log("unauthorized");
         navigate("/login");
       }
     });

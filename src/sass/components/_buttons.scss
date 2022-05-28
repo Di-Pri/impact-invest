@@ -1,20 +1,25 @@
 @use "../base" as b;
 
-.large-button {
+// Main buttons
+@mixin main-button {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 90vw;
   height: 64px;
-  background-color: b.$app-main-color;
   border: none;
   border-radius: 10px;
   font-size: 17px;
-  color: b.$bg-color;
   font-family: b.$main-font-family;
   font-weight: 600;
   letter-spacing: 0.2px;
   margin: 18px auto;
+}
+
+.large-button {
+  @include main-button;
+  background-color: b.$app-main-color;
+  color: b.$bg-color;
   &:disabled {
     color: rgba(0, 0, 0, 0.779);
     background-color: #9fa7b77c;
@@ -36,6 +41,7 @@
   }
 }
 
+// Text buttons
 .text-button {
   background: none;
   border: none;
@@ -62,4 +68,11 @@
   font-weight: 600;
   letter-spacing: 0.2px;
   margin: 18px auto;
+}
+
+// Large light blue button
+.blue-button {
+  @include main-button;
+  background-color: b.$app-secondary-color;
+  color: b.$bg-color;
 }

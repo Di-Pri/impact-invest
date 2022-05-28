@@ -4,6 +4,7 @@ import LoginPage from "./pages/Login";
 import RegisterPage from "./pages/Register";
 import HomePage from "./pages/Home";
 import AuthRoute from "./components/AuthRoute";
+import CongratulationsPage from "./pages/Congratulations";
 
 import "./App.scss";
 
@@ -23,6 +24,14 @@ const App: React.FC<AppProps> = (props) => {
         />
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<RegisterPage />} />
+        <Route
+          path="congratulations"
+          element={
+            <AuthRoute>
+              <CongratulationsPage />
+            </AuthRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
