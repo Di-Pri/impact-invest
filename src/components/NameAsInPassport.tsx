@@ -47,7 +47,7 @@ const NameAsInPassport: React.FC<NameAsInPassportProps> = (props) => {
           required={true}
           maxLength={30}
           ref={firstNameInput}
-          value={props.userData.firstName}
+          value={props.userData.firstName.charAt(0).toUpperCase() + props.userData.firstName.substring(1)}
           onFocus={() => {
             setInputFirstNameName(true);
           }}
@@ -74,7 +74,7 @@ const NameAsInPassport: React.FC<NameAsInPassportProps> = (props) => {
           required={true}
           maxLength={30}
           ref={surnameInput}
-          value={props.userData.surname}
+          value={props.userData.surname.charAt(0).toUpperCase() + props.userData.surname.substring(1)}
           onFocus={() => {
             setInputSurnameName(true);
           }}

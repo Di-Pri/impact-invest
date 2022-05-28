@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, ChangeEvent, Dispatch, SetStateAction } from "react";
 import { useNavigate } from "react-router-dom";
+import { DoneIcon } from "../assets";
 import { User } from "../types/User";
 
 export interface LoginDetailsProps {
@@ -17,6 +18,11 @@ export interface LoginDetailsProps {
 const LoginDetails: React.FC<LoginDetailsProps> = (props) => {
   const [inputEmailName, setInputEmailName] = useState<boolean>(false);
   const [inputPasswordName, setInputPasswordName] = useState<boolean>(false);
+  const [showPassHelper, setShowPassHelper] = useState<boolean>(false);
+  const [passUppercase, setPassUppercase] = useState<boolean>(false);
+  const [passLowercase, setPassLowercase] = useState<boolean>(false);
+  const [passNumber, setPassNumber] = useState<boolean>(false);
+  const [passCharacters, setPassCharacters] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -33,12 +39,41 @@ const LoginDetails: React.FC<LoginDetailsProps> = (props) => {
 
   // Disabling the button when input field is empty
   useEffect(() => {
-    if (props.userData.email.length !== 0 && props.userData.password.length !== 0 && props.userData.cookies !== false) {
+    if (props.userData.email.length > 2 && passUppercase && passLowercase && passNumber && passCharacters && props.userData.cookies) {
       props.setButtonDisabled(false);
     } else {
       props.setButtonDisabled(true);
     }
-  }, [props]);
+
+    // Set up password helper
+    // Password contains uppercase letter
+    if (/[A-Z]/.test(props.userData.password)) {
+      setPassUppercase(true);
+    } else {
+      setPassUppercase(false);
+    }
+
+    // Password contains lowercase letter
+    if (/[a-z]/.test(props.userData.password)) {
+      setPassLowercase(true);
+    } else {
+      setPassLowercase(false);
+    }
+
+    // Password contains 6 characters
+    if (props.userData.password.length > 5) {
+      setPassCharacters(true);
+    } else {
+      setPassCharacters(false);
+    }
+
+    // Password contains numbers
+    if (/[0-9]/.test(props.userData.password)) {
+      setPassNumber(true);
+    } else {
+      setPassNumber(false);
+    }
+  }, [props, showPassHelper, passUppercase, passLowercase, passNumber, passCharacters]);
 
   return (
     <div className="login-details">
@@ -94,9 +129,11 @@ const LoginDetails: React.FC<LoginDetailsProps> = (props) => {
           value={props.userData.password}
           onFocus={() => {
             setInputPasswordName(true);
+            setShowPassHelper(true);
           }}
           onBlur={() => {
             setInputPasswordName(false);
+            setShowPassHelper(false);
           }}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
             props.setRegisterPassword(e.target.value);
@@ -104,9 +141,26 @@ const LoginDetails: React.FC<LoginDetailsProps> = (props) => {
             props.setUserData({ ...props.userData, password: e.target.value });
           }}
         />
-        {props.inputNameError.includes("weak-password") ? (
-          <div className="input-error-message">Please provide stronger password</div>
+        {showPassHelper ? (
+          <div className="password-helper">
+            <h4>Password must contain:</h4>
+            <p className={passNumber ? "green" : ""}>
+              <span>{passNumber ? <DoneIcon /> : "-"}</span> 1 number
+            </p>
+            <p className={passUppercase ? "green" : ""}>
+              <span>{passUppercase ? <DoneIcon /> : "-"}</span> 1 uppercase letter
+            </p>
+            <p className={passLowercase ? "green" : ""}>
+              <span>{passLowercase ? <DoneIcon /> : "-"}</span> 1 lowercase letter
+            </p>
+            <p className={passCharacters ? "green" : ""}>
+              <span>{passCharacters ? <DoneIcon /> : "-"}</span> 6 characters
+            </p>
+          </div>
         ) : null}
+        {/* {props.inputNameError.includes("weak-password") ? (
+          <div className="input-error-message">Please provide stronger password</div>
+        ) : null} */}
       </section>
       <section className="cookies">
         <label className="container">

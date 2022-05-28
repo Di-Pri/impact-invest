@@ -47,8 +47,6 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
     cookies: false,
   });
 
-  console.log("userData.personalNumber)", userData.personalNumber);
-
   const displayFormStep = () => {
     if (step === 0) {
       return <CountryOfResidence userData={userData} setUserData={setUserData} setButtonDisabled={setButtonDisabled} />;
