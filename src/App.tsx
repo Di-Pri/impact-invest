@@ -5,6 +5,10 @@ import RegisterPage from "./pages/Register";
 import HomePage from "./pages/Home";
 import AuthRoute from "./components/AuthRoute";
 import CongratulationsPage from "./pages/Congratulations";
+import WatchlistPage from "./pages/Watchlist";
+import PortfolioPage from "./pages/Portfolio";
+import AcademyPage from "./pages/Academy";
+import MenuPage from "./pages/Menu";
 
 import "./App.scss";
 
@@ -24,14 +28,11 @@ const App: React.FC<AppProps> = (props) => {
         />
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<RegisterPage />} />
-        <Route
-          path="congratulations"
-          element={
-            <AuthRoute>
-              <CongratulationsPage />
-            </AuthRoute>
-          }
-        />
+        <Route path="congratulations" element={<CongratulationsPage />} />
+        <Route path="watchlist" element={<WatchlistPage />} />
+        <Route path="portfolio" element={<PortfolioPage />} />
+        <Route path="academy" element={<AcademyPage />} />
+        <Route path="menu" element={<MenuPage />} />
       </Routes>
     </BrowserRouter>
   );
