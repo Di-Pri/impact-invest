@@ -1,5 +1,6 @@
 import React, { useEffect, useState, Dispatch, SetStateAction } from "react";
 
+//  SDGs images
 import { SdgOne } from "../assets";
 import { SdgTwo } from "../assets";
 import { SdgThree } from "../assets";
@@ -27,17 +28,8 @@ export interface UserValuesProps {
 }
 
 const UserValues: React.FC<UserValuesProps> = (props) => {
-  useEffect(() => {
-    // Disabling the button if there is no values selected
-    if (props.userData.userValues.length !== 0) {
-      props.setButtonDisabled(false);
-    } else {
-      props.setButtonDisabled(true);
-    }
-  }, [props]);
-
-  // Managing the state of checked items
   const [checked, setChecked] = useState<Array<string>>(props.userData.userValues);
+
   const checkList = [
     "sdg_one",
     "sdg_two",
@@ -58,6 +50,7 @@ const UserValues: React.FC<UserValuesProps> = (props) => {
     "sdg_seventeen",
   ];
 
+  // Managing the state of checked items
   const handleCheck = (item: string) => {
     let newList = [...checked];
     if (checked.includes(item)) {
@@ -74,31 +67,46 @@ const UserValues: React.FC<UserValuesProps> = (props) => {
     // eslint-disable-next-line
   }, [checked]);
 
+  // Disabling the button if there are no values selected
+  useEffect(() => {
+    if (props.userData.userValues.length !== 0) {
+      props.setButtonDisabled(false);
+    } else {
+      props.setButtonDisabled(true);
+    }
+  }, [props]);
+
   return (
     <div className="user-values">
-      {checkList.map((item, index) => (
-        <div key={index} className={checked.includes(item) ? "one-sdg" : "one-sdg sdg-unchecked"}>
-          <button className="sdg-button" value={item} onClick={() => handleCheck(item)}>
-            {item === "sdg_one" ? <SdgOne /> : null}
-            {item === "sdg_two" ? <SdgTwo /> : null}
-            {item === "sdg_three" ? <SdgThree /> : null}
-            {item === "sdg_four" ? <SdgFour /> : null}
-            {item === "sdg_five" ? <SdgFive /> : null}
-            {item === "sdg_six" ? <SdgSix /> : null}
-            {item === "sdg_seven" ? <SdgSeven /> : null}
-            {item === "sdg_eight" ? <SdgEight /> : null}
-            {item === "sdg_nine" ? <SdgNine /> : null}
-            {item === "sdg_ten" ? <SdgTen /> : null}
-            {item === "sdg_eleven" ? <SdgEleven /> : null}
-            {item === "sdg_twelve" ? <SdgTwelve /> : null}
-            {item === "sdg_thirteen" ? <SdgThirteen /> : null}
-            {item === "sdg_fourteen" ? <SdgFourteen /> : null}
-            {item === "sdg_fifteen" ? <SdgFifteen /> : null}
-            {item === "sdg_sixteen" ? <SdgSixteen /> : null}
-            {item === "sdg_seventeen" ? <SdgSeventeen /> : null}
-          </button>
-        </div>
-      ))}
+      <p>
+        Select the Sustainable Development Goals that are in line with your values. We will find companies for you that support the same
+        goals. And don't worry, you will be able to update your choice later.
+      </p>
+      <div className="sdgs-grid">
+        {checkList.map((item, index) => (
+          <div key={index} className={checked.includes(item) ? "one-sdg" : "one-sdg sdg-unchecked"}>
+            <button className="sdg-button" value={item} onClick={() => handleCheck(item)}>
+              {item === "sdg_one" ? <SdgOne /> : null}
+              {item === "sdg_two" ? <SdgTwo /> : null}
+              {item === "sdg_three" ? <SdgThree /> : null}
+              {item === "sdg_four" ? <SdgFour /> : null}
+              {item === "sdg_five" ? <SdgFive /> : null}
+              {item === "sdg_six" ? <SdgSix /> : null}
+              {item === "sdg_seven" ? <SdgSeven /> : null}
+              {item === "sdg_eight" ? <SdgEight /> : null}
+              {item === "sdg_nine" ? <SdgNine /> : null}
+              {item === "sdg_ten" ? <SdgTen /> : null}
+              {item === "sdg_eleven" ? <SdgEleven /> : null}
+              {item === "sdg_twelve" ? <SdgTwelve /> : null}
+              {item === "sdg_thirteen" ? <SdgThirteen /> : null}
+              {item === "sdg_fourteen" ? <SdgFourteen /> : null}
+              {item === "sdg_fifteen" ? <SdgFifteen /> : null}
+              {item === "sdg_sixteen" ? <SdgSixteen /> : null}
+              {item === "sdg_seventeen" ? <SdgSeventeen /> : null}
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

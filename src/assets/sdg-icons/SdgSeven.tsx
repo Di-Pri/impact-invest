@@ -1,7 +1,7 @@
 import React from "react";
 
 export const SdgSeven: React.FC = () => (
-  <svg width={1000} height={1000} viewBox="0 0 1000 1000" fill="#fcc30b">
+  <svg width={1000} height={1000} viewBox="0 0 1000 1000" fill="#fcc30b" fill-opacity="0.8">
     <rect id="_Path_" data-name="&lt;Path&gt;" className="cls-1" y="-0.02" width="1000" height="1000.03" />
     <polygon
       id="_Path_2"

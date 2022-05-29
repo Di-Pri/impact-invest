@@ -10,13 +10,14 @@
   width: 100%;
   box-shadow: 4px 4px 16px 0 rgb(21, 29, 37, 0.16);
   padding: 12px 6vw;
-
+  background-color: b.$bg-color;
   .bottom-nav-icons {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-decoration: none;
+    min-width: 40px;
     svg {
       width: auto;
       height: 19px;

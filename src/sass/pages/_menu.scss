@@ -1,0 +1,41 @@
+@use "../base" as b;
+
+.menu-page {
+  padding: 17px 12px;
+  .menu-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 60px;
+    button {
+      background: none;
+      border: none;
+      width: 100%;
+      border-bottom: 1.5px solid b.$line-color;
+      padding-bottom: 1.7vh;
+      padding-top: 2vh;
+      margin-top: 2.5vh;
+      font-size: 22px;
+      font-weight: 300;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      svg {
+        width: 10px;
+        height: auto;
+        transform: rotate(180deg);
+        margin-right: 5px;
+        path {
+          fill: b.$sec-text-color;
+        }
+      }
+      p {
+        color: b.$sec-text-color;
+        font-size: 19px;
+        font-weight: 400;
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import React from "react";
 
 export const SdgFifteen: React.FC = () => (
-  <svg width={1000} height={1000} viewBox="0 0 1000 1000" fill="#56c02b">
+  <svg width={1000} height={1000} viewBox="0 0 1000 1000" fill="#56c02b" fill-opacity="0.8">
     <rect className="cls-1" width="1000" height="1000" />
     <polygon className="cls-2" points="319.56 83.7 319.56 165.48 349.71 165.48 349.71 154.26 333.31 154.26 333.31 83.7 319.56 83.7" />
     <rect className="cls-2" x="357.19" y="83.7" width="13.74" height="81.77" />

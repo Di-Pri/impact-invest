@@ -7,7 +7,7 @@ export interface HomeProps {}
 const HomePage: React.FC<HomeProps> = (props) => {
   return (
     <div className="home-page">
-      <HiUser title="Let's explore your matches" />
+      <HiUser title="Hi" text="Let's explore your matches" />
       <BottomNavigation />
     </div>
   );

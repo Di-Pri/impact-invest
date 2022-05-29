@@ -16,6 +16,7 @@ import { doc, getDoc } from "@firebase/firestore";
 import { createContext } from "react";
 import { User } from "./types/User";
 import "./App.scss";
+import UserValuesUpdate from "./pages/UserValuesUpdate";
 
 export interface AppProps {}
 
@@ -73,6 +74,7 @@ const App: React.FC<AppProps> = (props) => {
           <Route path="portfolio" element={<PortfolioPage />} />
           <Route path="academy" element={<AcademyPage />} />
           <Route path="menu" element={<MenuPage />} />
+          <Route path="uservaluesupdate" element={<UserValuesUpdate />} />
         </Routes>
       </userObjectContext.Provider>
     </BrowserRouter>

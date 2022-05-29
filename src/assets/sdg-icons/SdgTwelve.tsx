@@ -1,7 +1,7 @@
 import React from "react";
 
 export const SdgTwelve: React.FC = () => (
-  <svg width={1000} height={1000} viewBox="0 0 1000 1000" fill="#bf8b2e">
+  <svg width={1000} height={1000} viewBox="0 0 1000 1000" fill="#bf8b2e" fill-opacity="0.8">
     <rect id="_Path_" data-name="&lt;Path&gt;" className="cls-1" y="-0.03" width="1000" height="1000.06" />
     <polygon
       id="_Path_2"
