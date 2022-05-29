@@ -1,7 +1,7 @@
 import React from "react";
 
 export const SdgTwo: React.FC = () => (
-  <svg width={1000} height={1000} viewBox="0 0 1000 1000" fill="#dda63a" fill-opacity="0.8">
+  <svg width={1000} height={1000} viewBox="0 0 1000 1000" fill="#dda63a" fillOpacity="0.8">
     <rect id="_Path_" data-name="&lt;Path&gt;" className="cls-1" y="-0.02" width="1000" height="1000.04" />
     <path
       id="_Path_2"

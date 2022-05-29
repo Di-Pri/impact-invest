@@ -1,7 +1,7 @@
 import React from "react";
 
 export const SdgEight: React.FC = () => (
-  <svg width={1000} height={1000} viewBox="0 0 1000 1000" fill="#a21942" fill-opacity="0.8">
+  <svg width={1000} height={1000} viewBox="0 0 1000 1000" fill="#a21942" fillOpacity="0.8">
     <g id="_Group_" data-name="&lt;Group&gt;">
       <rect id="_Path_" data-name="&lt;Path&gt;" className="cls-1" y="-0.02" width="1000" height="1000.03" />
       <path

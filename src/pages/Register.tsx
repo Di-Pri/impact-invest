@@ -162,9 +162,10 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
       <CSSTransition in={popUpOpen} timeout={300} classNames="alert" unmountOnExit nodeRef={nodeRef}>
         <PopUp
           setPopUpOpen={setPopUpOpen}
+          hey="Hey"
           nodeRef={nodeRef}
           message="You must be over 18 to create your own brokerage account. You may have a guardian who will open an account for you."
-          button="Open guardian account"
+          navigateHome="Open guardian account"
         />
       </CSSTransition>
     </div>

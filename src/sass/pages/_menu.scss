@@ -2,13 +2,15 @@
 
 .menu-page {
   padding: 17px 12px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
   .menu-buttons {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 10px;
-    margin-top: 20px;
-    margin-bottom: 60px;
+    margin-top: 25px;
     button {
       background: none;
       border: none;
@@ -36,6 +38,17 @@
         font-size: 19px;
         font-weight: 400;
       }
+    }
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin-bottom: 20px;
+    svg {
+      width: 70vw;
+      opacity: 0.3;
     }
   }
 }

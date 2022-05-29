@@ -1,7 +1,7 @@
 import React from "react";
 
 export const SdgSixteen: React.FC = () => (
-  <svg width={1000} height={1000} viewBox="0 0 1000 1000" fill="#00689d" fill-opacity="0.8">
+  <svg width={1000} height={1000} viewBox="0 0 1000 1000" fill="#00689d" fillOpacity="0.8">
     <rect className="cls-1" x="0.3" y="0.15" width="999.81" height="999.85" />
     <polygon
       className="cls-2"

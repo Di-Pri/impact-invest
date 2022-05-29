@@ -1,25 +1,43 @@
 import React, { Dispatch, SetStateAction, MutableRefObject } from "react";
 import { useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase-config";
 import { CrossIcon } from "../assets";
 
 export interface PopUpProps {
   setPopUpOpen: Dispatch<SetStateAction<boolean>>;
   nodeRef?: MutableRefObject<null>;
   message: string;
-  button?: string;
+  navigateHome?: string;
+  hey: string | undefined;
+  navigate?: string;
+  logout?: string;
 }
 
 const PopUp: React.FC<PopUpProps> = (props) => {
   const navigate = useNavigate();
+
+  // Logout function
+  const logout = async () => {
+    await signOut(auth);
+    navigate("/login");
+  };
+
   return (
     <div className="pop-up" ref={props.nodeRef}>
       <div className="message">
-        <h2>Hey!</h2>
+        <h2>{props.hey}!</h2>
         <p>{props.message}</p>
 
-        {props.button ? (
+        {props.navigateHome ? (
           <button className="pop-up-button" onClick={() => navigate("/")}>
-            {props.button}
+            {props.navigateHome}
+          </button>
+        ) : null}
+
+        {props.logout ? (
+          <button className="pop-up-button" onClick={logout}>
+            {props.logout}
           </button>
         ) : null}
 

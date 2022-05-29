@@ -1,7 +1,7 @@
 import React from "react";
 
 export const SdgEleven: React.FC = () => (
-  <svg width={1000} height={1000} viewBox="0 0 1000 1000" fill="#fd9d24" fill-opacity="0.8">
+  <svg width={1000} height={1000} viewBox="0 0 1000 1000" fill="#fd9d24" fillOpacity="0.8">
     <rect className="cls-1" width="1000" height="1000" />
     <path
       className="cls-2"

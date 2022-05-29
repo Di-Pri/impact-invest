@@ -88,6 +88,7 @@ const CountryOfResidence: React.FC<CountryOfResidenceProps> = (props) => {
       </CSSTransition>
       <CSSTransition in={popUpOpen} timeout={300} classNames="alert" unmountOnExit nodeRef={nodeRef}>
         <PopUp
+          hey="Hey"
           setPopUpOpen={setPopUpOpen}
           nodeRef={nodeRef}
           message="At the moment we only offer our services to residents of Denmark, Sweden and Norway."
