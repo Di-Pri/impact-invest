@@ -1,22 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { signOut, onAuthStateChanged } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { auth } from "../firebase-config";
-import { User as FirebaseUser } from "firebase/auth";
 import BottomNavigation from "../components/BottomNavigation";
+import HiUser from "../components/HiUser";
 
 export interface MenuProps {}
 
 const MenuPage: React.FC<MenuProps> = (props) => {
-  const [user, setUser] = useState<FirebaseUser | null>(null);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      console.log("homeUser", currentUser);
-    });
-  }, []);
 
   const logout = async () => {
     await signOut(auth);
@@ -25,9 +17,7 @@ const MenuPage: React.FC<MenuProps> = (props) => {
 
   return (
     <div className="menu-page">
-      <p>Menu page</p>
-      <h4>User logged in:</h4>
-      {user?.email}
+      <HiUser title="Here is the impact you made" />
 
       <button onClick={logout}>Sign out</button>
       <BottomNavigation />

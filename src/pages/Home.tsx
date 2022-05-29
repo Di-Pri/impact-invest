@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import BottomNavigation from "../components/BottomNavigation";
+import HiUser from "../components/HiUser";
 
 export interface HomeProps {}
 
 const HomePage: React.FC<HomeProps> = (props) => {
   return (
-    <div>
-      <p>Home Page</p>
+    <div className="home-page">
+      <HiUser title="Let's explore your matches" />
       <BottomNavigation />
     </div>
   );
