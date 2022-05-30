@@ -4,7 +4,7 @@ import BottomNavigation from "../components/BottomNavigation";
 import { useNavigate, useParams } from "react-router-dom";
 import { Company } from "../types/Company";
 import { allCompaniesContext } from "../App";
-import CompanyDetails from "../components/CompanyDetails";
+import CompanyInfo from "../components/CompanyInfo";
 import BuyStock from "../components/BuyStock";
 import SellStock from "../components/SellStock";
 import ReviewBuyStock from "../components/ReviewBuyStock";
@@ -65,8 +65,10 @@ const CompanyPage: React.FC = (props) => {
       <section>
         <TopNavigation sendToPage="/" goBack={changeCompanyPageComponents} />
       </section>
-      <header>
-        <div>Logo</div>
+      <header className="company-header">
+        <div style={{ backgroundColor: `${selectedCompany?.logoBackground}`, color: `${selectedCompany?.logoText}` }}>
+          {selectedCompany?.companyName.charAt(0)}
+        </div>
         <div>{selectedCompany?.companyName}</div>
       </header>
 
@@ -76,7 +78,7 @@ const CompanyPage: React.FC = (props) => {
             <button onClick={buyStock}>Buy</button>
             <button onClick={sellStock}>Sell</button>
           </section>
-          <CompanyDetails />
+          <CompanyInfo />
         </section>
       ) : null}
 
