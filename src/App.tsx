@@ -17,6 +17,7 @@ import { createContext } from "react";
 import { User } from "./types/User";
 import "./App.scss";
 import UserValuesUpdate from "./pages/UserValuesUpdate";
+import CompanyPage from "./pages/CompanyPage";
 
 export interface AppProps {}
 
@@ -41,11 +42,6 @@ const App: React.FC<AppProps> = (props) => {
         const docRef = doc(usersCollection, authUser.uid);
         const singleUserDoc = await getDoc(docRef);
 
-        if (singleUserDoc.exists()) {
-          console.log("Document data from users collection:", singleUserDoc.data());
-        } else {
-          console.log("No such document!");
-        }
         const singleUser = singleUserDoc.data();
         if (singleUser) {
           setUserObject(singleUser);
@@ -75,6 +71,7 @@ const App: React.FC<AppProps> = (props) => {
           <Route path="academy" element={<AcademyPage />} />
           <Route path="menu" element={<MenuPage />} />
           <Route path="uservaluesupdate" element={<UserValuesUpdate />} />
+          <Route path="companypage/:id" element={<CompanyPage />} />
         </Routes>
       </userObjectContext.Provider>
     </BrowserRouter>

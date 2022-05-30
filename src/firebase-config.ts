@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore, CollectionReference, collection, DocumentData } from "firebase/firestore";
 import { User } from "./types/User";
+import { Company } from "./types/Company";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAwgOBKgHtLF32_9KSCcCkjtlXp4WoyE3k",
@@ -22,4 +23,6 @@ const createCollection = <T = DocumentData>(collectionName: string) => {
   return collection(firestore, collectionName) as CollectionReference<T>;
 };
 
+// Creating path to collections
 export const usersCollection = createCollection<User>("users");
+export const companiesCollection = createCollection<Company>("companies");
