@@ -11,7 +11,7 @@ const CompanyChart: React.FC<CompanyChartProps> = (props) => {
     <div className="company-chart">
       <section className="main-price">
         <div>
-          <div> €{props.selectedCompany?.currentPrice}</div>
+          <div>€{props.selectedCompany?.currentPrice}</div>
           <div className={props.selectedCompany?.bullish ? "bull-triangle" : "bear-triangle"}>
             <TriangleIcon />
           </div>

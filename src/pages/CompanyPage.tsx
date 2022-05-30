@@ -76,11 +76,11 @@ const CompanyPage: React.FC = (props) => {
       {companyDetails ? (
         <section>
           <CompanyChart selectedCompany={selectedCompany} />
-          <section>
+          <section className="buy-sell-buttons">
             <button onClick={buyStock}>Buy</button>
             {/* <button onClick={sellStock}>Sell</button> */}
           </section>
-          <CompanyInfo />
+          <CompanyInfo selectedCompany={selectedCompany} />
         </section>
       ) : null}
 
