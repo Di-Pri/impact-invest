@@ -1,26 +1,21 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../firebase-config";
-//import { User as FirebaseUser } from "firebase/auth";
+import React from "react";
 import BottomNavigation from "../components/BottomNavigation";
+import image from "../assets/academy.jpg";
 
-export interface AcademyProps {}
-
-const AcademyPage: React.FC<AcademyProps> = (props) => {
-  //  const [user, setUser] = useState<FirebaseUser | null>(null);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (currentUser) => {
-      //  setUser(currentUser);
-      console.log("CongratulationsUser", currentUser);
-    });
-  }, []);
-
+const AcademyPage: React.FC = (props) => {
   return (
     <div className="academy-page">
-      <p>Academy page</p>
+      <div className="overlay"></div>
+      <div className="academy-image">
+        <img src={image} alt="Logo" />
+      </div>
+      <div className="modal">
+        <h2>Coming soon!</h2>
+        <p>
+          You will soon find here educational videos and articles. You will learn more about Sustainable Development Goals, basics of
+          investing in stock market, and how you can make an impact through your investments.
+        </p>
+      </div>
       <BottomNavigation />
     </div>
   );

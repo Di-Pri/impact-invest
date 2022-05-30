@@ -11,6 +11,7 @@
   box-shadow: 4px 4px 16px 0 rgb(21, 29, 37, 0.16);
   padding: 12px 6vw;
   background-color: b.$bg-color;
+  z-index: 3;
   .bottom-nav-icons {
     display: flex;
     flex-direction: column;
