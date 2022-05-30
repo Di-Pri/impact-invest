@@ -1,4 +1,5 @@
 export { MainLogo } from "./MainLogo";
+export { StockChart } from "./StockChart";
 export { IIText } from "./IIText";
 export { CrossIcon } from "./icons/CrossIcon";
 export { BackIcon } from "./icons/BackIcon";
@@ -7,6 +8,7 @@ export { HomeIcon } from "./icons/HomeIcon";
 export { WatchlistIcon } from "./icons/WatchlistIcon";
 export { PortfolioIcon } from "./icons/PortfolioIcon";
 export { AcademyIcon } from "./icons/AcademyIcon";
+export { TriangleIcon } from "./icons/TriangleIcon";
 export { MenuIcon } from "./icons/MenuIcon";
 export { SdgOne } from "./sdg-icons/SdgOne";
 export { SdgTwo } from "./sdg-icons/SdgTwo";

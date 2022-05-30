@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Company } from "../types/Company";
 import { allCompaniesContext } from "../App";
 import CompanyInfo from "../components/CompanyInfo";
+import CompanyChart from "../components/CompanyChart";
 import BuyStock from "../components/BuyStock";
 import SellStock from "../components/SellStock";
 import ReviewBuyStock from "../components/ReviewBuyStock";
@@ -74,9 +75,10 @@ const CompanyPage: React.FC = (props) => {
 
       {companyDetails ? (
         <section>
+          <CompanyChart selectedCompany={selectedCompany} />
           <section>
             <button onClick={buyStock}>Buy</button>
-            <button onClick={sellStock}>Sell</button>
+            {/* <button onClick={sellStock}>Sell</button> */}
           </section>
           <CompanyInfo />
         </section>

@@ -7,20 +7,21 @@
     flex-direction: column;
     align-items: center;
     div:nth-of-type(1) {
-      width: 44px;
-      height: 44px;
+      width: 56px;
+      height: 56px;
       border-radius: 9px;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 19px;
-      font-weight: 400;
+      font-size: 22px;
+      font-weight: 600;
     }
     div:nth-of-type(2) {
-      font-size: 27px;
+      text-align: center;
+      font-size: 29px;
       font-weight: 500;
-      margin-top: 12px;
-      margin-bottom: 10px;
+      margin-top: 20px;
+      margin-bottom: 16px;
     }
   }
 }
