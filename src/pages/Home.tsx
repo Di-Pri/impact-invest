@@ -1,32 +1,15 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useState, useContext } from "react";
 import BottomNavigation from "../components/BottomNavigation";
 import HiUser from "../components/HiUser";
-import { getDocs } from "@firebase/firestore";
-import { companiesCollection } from "../firebase-config";
-import { Company } from "../types/Company";
 import { Link } from "react-router-dom";
+import { allCompaniesContext } from "../App";
 
 export interface HomeProps {}
 
 const HomePage: React.FC<HomeProps> = (props) => {
-  const [companies, setCompanies] = useState<Company[]>([]);
-  const [searchCompany, setSearchCompany] = useState("");
+  const allCompanies = useContext(allCompaniesContext);
 
-  // Getting companies from firestore collection
-  useEffect(() => {
-    async function getCompaniesData() {
-      const companiesDocs = await getDocs(companiesCollection);
-      if (companiesDocs) {
-        const companies = companiesDocs.docs.map((com) => com.data());
-        console.log("companies", companies);
-        if (companies) {
-          setCompanies(companies);
-          companies.forEach((company) => console.log(company.companyName));
-        }
-      }
-    }
-    getCompaniesData();
-  }, []);
+  const [searchCompany, setSearchCompany] = useState("");
 
   return (
     <div className="home-page">
@@ -43,7 +26,7 @@ const HomePage: React.FC<HomeProps> = (props) => {
       </section>
       <section>
         <ul className="companies-list">
-          {companies
+          {allCompanies
             .filter((elem) => {
               if (searchCompany === "") {
                 return elem;
