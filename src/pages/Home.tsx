@@ -1,15 +1,50 @@
-import React, { ChangeEvent, useState, useContext } from "react";
+import React, { ChangeEvent, useState, useContext, useEffect } from "react";
 import BottomNavigation from "../components/BottomNavigation";
 import HiUser from "../components/HiUser";
 import { Link } from "react-router-dom";
 import { allCompaniesContext } from "../App";
+import { Company } from "../types/Company";
+import { User as FirebaseUser } from "firebase/auth";
+import { auth, usersCollection } from "../firebase-config";
+import { onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 
 export interface HomeProps {}
 
 const HomePage: React.FC<HomeProps> = (props) => {
   const allCompanies = useContext(allCompaniesContext);
-
+  const [authUser, setAuthUser] = useState<FirebaseUser | null>(null);
+  const [usersCompanies, setUsersCompanies] = useState<Company[]>([]);
+  const [userValues, setUserValues] = useState<Array<string>>([]);
   const [searchCompany, setSearchCompany] = useState("");
+
+  // Checking current signed in user
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setAuthUser(currentUser);
+    });
+  }, []);
+
+  // Getting user values from firestore to update companies dynamically based on selected sdgs
+  useEffect(() => {
+    async function getUserData() {
+      if (authUser) {
+        const docRef = doc(usersCollection, authUser.uid);
+        const singleUserDoc = await getDoc(docRef);
+        const singleUser = singleUserDoc.data();
+        if (singleUser) {
+          setUserValues(singleUser.userValues);
+        }
+      }
+    }
+    getUserData();
+  }, [authUser]);
+
+  // Matching companies to user values
+  useEffect(() => {
+    const filteredCompanies = allCompanies.filter((comp) => userValues.some((item2) => comp.sdgs.includes(item2)));
+    setUsersCompanies(filteredCompanies);
+  }, [allCompanies, userValues]);
 
   return (
     <div className="home-page">
@@ -26,7 +61,7 @@ const HomePage: React.FC<HomeProps> = (props) => {
       </section>
       <section>
         <ul className="companies-list">
-          {allCompanies
+          {usersCompanies
             .filter((elem) => {
               if (searchCompany === "") {
                 return elem;
