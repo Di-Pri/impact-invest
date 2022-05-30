@@ -11,7 +11,7 @@ const PortfolioPage: React.FC<PortfolioProps> = (props) => {
 
   return (
     <div className="portfolio-page">
-      <HiUser title="Well done," text="Here is the impact you made" />
+      <HiUser title="Dear" text="Here is the impact you made" />
       <BottomNavigation />
     </div>
   );

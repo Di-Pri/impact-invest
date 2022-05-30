@@ -12,8 +12,8 @@ const AcademyPage: React.FC = (props) => {
       <div className="modal">
         <h2>Coming soon!</h2>
         <p>
-          You will soon find here educational videos and articles. You will learn more about Sustainable Development Goals, basics of
-          investing in stock market, and how you can make an impact through your investments.
+          In the near future, you will find here educational videos and articles. You will learn more about Sustainable Development Goals,
+          basics of investing in stock market, and how you can make an impact through your investments.
         </p>
       </div>
       <BottomNavigation />

@@ -16,8 +16,8 @@
       border: none;
       width: 100%;
       border-bottom: 1.5px solid b.$line-color;
-      padding-bottom: 1.7vh;
-      padding-top: 1vh;
+      padding-bottom: 1.4vh;
+      padding-top: 1.5vh;
       margin-top: 2vh;
       font-size: 22px;
       font-weight: 300;
@@ -29,12 +29,9 @@
         height: auto;
         transform: rotate(180deg);
         margin-right: 5px;
-        path {
-          fill: b.$sec-text-color;
-        }
       }
       p {
-        color: b.$sec-text-color;
+        color: b.$menu-icons-color;
         font-size: 19px;
         font-weight: 400;
       }
