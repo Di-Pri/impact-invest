@@ -92,6 +92,7 @@ const CompanyPage: React.FC = (props) => {
     onAuthStateChanged(auth, (currentUser) => {
       setAuthUser(currentUser);
     });
+    window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {

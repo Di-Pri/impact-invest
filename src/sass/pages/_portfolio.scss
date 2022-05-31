@@ -40,6 +40,8 @@
       }
     }
   }
+
+  // Portfolio sdgs
   .portfolio-sdgs {
     text-align: center;
     h2 {
@@ -48,5 +50,76 @@
       color: b.$sec-text-color;
       margin-top: 40px;
     }
+  }
+
+  // Portfolio trades
+  ul {
+    list-style-type: none;
+    margin-top: 30px;
+  }
+  a {
+    text-decoration: none;
+    font-family: b.$main-font-family;
+    color: b.$main-text-color;
+  }
+  .companies-list {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 60px;
+  }
+  .company-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    border-bottom: 1.5px solid b.$line-color;
+    padding-top: 13px;
+    padding-bottom: 13px;
+  }
+  .logo-wrap {
+    width: 56px;
+    height: 56px;
+  }
+  .company-logo {
+    width: 56px;
+    height: 56px;
+    border-radius: 9px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .company-details {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+  }
+  .company-name {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .shares {
+    font-size: 13px;
+    font-weight: 500;
+    color: b.$sec-text-color;
+  }
+  .current-price {
+    font-size: 14.5px;
+    font-weight: 500;
+  }
+  .grow {
+    font-size: 14.5px;
+    font-weight: 500;
+    color: b.$success-color;
+    white-space: nowrap;
+  }
+  .trade-price {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
   }
 }
