@@ -1,16 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { Company } from "../types/Company";
 import { onAuthStateChanged, User as FirebaseUser } from "firebase/auth";
 import { auth, usersCollection } from "../firebase-config";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
+import PopUp from "./PopUp";
+import { CSSTransition } from "react-transition-group";
 
 export interface ReviewBuyStockProps {
   buyShares: number;
+  setBuyShares: Dispatch<SetStateAction<number>>;
   selectedCompany: Company | undefined;
+  closeTradePopup: () => void;
 }
 
 const ReviewBuyStock: React.FC<ReviewBuyStockProps> = (props) => {
   const [authUser, setAuthUser] = useState<FirebaseUser | null>(null);
+  const [popUpOpen, setPopUpOpen] = useState(false);
 
   // Calculating price
   const totalPrice = props.buyShares * Number(props.selectedCompany?.currentPrice) + 2;
@@ -34,8 +39,26 @@ const ReviewBuyStock: React.FC<ReviewBuyStockProps> = (props) => {
           logoColor: props.selectedCompany?.logoText,
         }),
       });
+      setPopUpOpen(true);
     }
   }
+
+  // Closing popup and clearing inputs after placing order
+  const tradeDone = () => {
+    setPopUpOpen(false);
+    props.closeTradePopup();
+    props.setBuyShares(0);
+  };
+
+  // Improving readability of the numbers, with decimals
+  const fractionNumber = new Intl.NumberFormat("en-IN", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+
+  // Passing refs to CSSTransition component
+  const ref1 = useRef(null);
+  const ref2 = useRef(null);
 
   return (
     <div className="review-buy-sell-page">
@@ -55,13 +78,27 @@ const ReviewBuyStock: React.FC<ReviewBuyStockProps> = (props) => {
         </div>
         <div>
           <h5 className="title">Total</h5>
-          <p className="value">~€{totalPrice}</p>
+          <p className="value">~€{fractionNumber.format(totalPrice)}</p>
         </div>
       </section>
 
       <div className="buy-sell-buttons">
         <button onClick={placeOrder}>Confirm order</button>
       </div>
+
+      <CSSTransition in={popUpOpen} timeout={300} classNames="alert2" unmountOnExit nodeRef={ref1}>
+        <div className="blur-background" ref={ref1}></div>
+      </CSSTransition>
+      <CSSTransition in={popUpOpen} timeout={300} classNames="alert" unmountOnExit nodeRef={ref2}>
+        <PopUp
+          hey="Done"
+          navigateToPortfolio="See portfolio"
+          tradeDone={tradeDone}
+          setPopUpOpen={setPopUpOpen}
+          nodeRef={ref2}
+          message="Your order is on its way. You can find trades and transactions in your portfolio."
+        />
+      </CSSTransition>
     </div>
   );
 };

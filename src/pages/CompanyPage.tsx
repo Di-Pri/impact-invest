@@ -60,6 +60,19 @@ const CompanyPage: React.FC = (props) => {
     }
   };
 
+  // Going to main page of the company after placing order
+  const closeTradePopup = () => {
+    if (reviewBuyActive === true) {
+      setReviewBuyActive(false);
+      setCompanyDetails(true);
+    } else if (reviewSellActive === true) {
+      setReviewSellActive(false);
+      setCompanyDetails(true);
+    } else {
+      navigate("/");
+    }
+  };
+
   // Saving company to watchlist
   // Managing the state of checked items
   const saveCompany = () => {
@@ -170,7 +183,14 @@ const CompanyPage: React.FC = (props) => {
         />
       ) : null}
 
-      {reviewBuyActive ? <ReviewBuyStock buyShares={buyShares} selectedCompany={selectedCompany} /> : null}
+      {reviewBuyActive ? (
+        <ReviewBuyStock
+          buyShares={buyShares}
+          setBuyShares={setBuyShares}
+          selectedCompany={selectedCompany}
+          closeTradePopup={closeTradePopup}
+        />
+      ) : null}
 
       {reviewSellActive ? <ReviewSellStock /> : null}
 

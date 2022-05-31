@@ -12,6 +12,8 @@ export interface PopUpProps {
   hey: string | undefined;
   navigate?: string;
   logout?: string;
+  tradeDone?: () => void;
+  navigateToPortfolio?: string;
 }
 
 const PopUp: React.FC<PopUpProps> = (props) => {
@@ -35,20 +37,32 @@ const PopUp: React.FC<PopUpProps> = (props) => {
           </button>
         ) : null}
 
+        {props.navigateToPortfolio ? (
+          <button className="pop-up-button" onClick={() => navigate("/portfolio")}>
+            {props.navigateToPortfolio}
+          </button>
+        ) : null}
+
         {props.logout ? (
           <button className="pop-up-button" onClick={logout}>
             {props.logout}
           </button>
         ) : null}
 
-        <button
-          className="close-button"
-          onClick={() => {
-            props.setPopUpOpen(false);
-          }}
-        >
-          <CrossIcon />
-        </button>
+        {props.tradeDone ? (
+          <button className="close-button" onClick={props.tradeDone}>
+            <CrossIcon />
+          </button>
+        ) : (
+          <button
+            className="close-button"
+            onClick={() => {
+              props.setPopUpOpen(false);
+            }}
+          >
+            <CrossIcon />
+          </button>
+        )}
       </div>
     </div>
   );
