@@ -2,4 +2,51 @@
 
 .portfolio-page {
   padding: 17px 12px;
+  .portfolio-details {
+    margin-top: 40px;
+    text-align: center;
+    h2 {
+      font-size: 19px;
+      font-weight: 600;
+      color: b.$sec-text-color;
+    }
+    h5 {
+      font-size: 15px;
+      font-weight: 600;
+      color: b.$sec-text-color;
+    }
+    .portfolio-value {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 35px;
+      margin-bottom: 40px;
+      div {
+        border-radius: 32px;
+        font-size: 27px;
+        font-weight: 400;
+        box-shadow: inset 0 0 10px b.$line-color;
+        padding: 8px 33px;
+      }
+    }
+    .flex {
+      display: flex;
+      justify-content: space-around;
+      padding-inline: 5px;
+      p {
+        font-size: 15px;
+        font-weight: 500;
+        margin-top: 4px;
+      }
+    }
+  }
+  .portfolio-sdgs {
+    text-align: center;
+    h2 {
+      font-size: 19px;
+      font-weight: 600;
+      color: b.$sec-text-color;
+      margin-top: 40px;
+    }
+  }
 }

@@ -10,6 +10,9 @@ import BuyStock from "../components/BuyStock";
 import SellStock from "../components/SellStock";
 import ReviewBuyStock from "../components/ReviewBuyStock";
 import ReviewSellStock from "../components/ReviewSellStock";
+import { onAuthStateChanged, User as FirebaseUser } from "firebase/auth";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { auth, usersCollection } from "../firebase-config";
 
 const CompanyPage: React.FC = (props) => {
   const navigate = useNavigate();
@@ -22,12 +25,17 @@ const CompanyPage: React.FC = (props) => {
   const [sellActive, setSellActive] = useState(false);
   const [reviewSellActive, setReviewSellActive] = useState(false);
 
+  const [checked, setChecked] = useState<Array<string>>([]);
+  const [companyIsSaved, setCompanyIsSaved] = useState<boolean>(false);
+  const [authUser, setAuthUser] = useState<FirebaseUser | null>(null);
+
+  console.log("checked", checked);
+
   console.log("selectedCompany", selectedCompany);
 
   // Finding selected company from all companies global state by id
   useEffect(() => {
     const company = allCompanies.find((elem) => elem.id === params.id);
-    console.log("company", company);
     setSelectedCompany(company);
   }, [allCompanies, params.id]);
 
@@ -61,11 +69,76 @@ const CompanyPage: React.FC = (props) => {
     }
   };
 
+  // Saving company to watchlist
+  // Managing the state of checked items
+  const saveCompany = () => {
+    if (selectedCompany) {
+      let newList = [...checked];
+      if (checked.includes(selectedCompany.companyName)) {
+        newList.splice(checked.indexOf(selectedCompany.companyName), 1);
+      } else {
+        newList = [...checked, selectedCompany.companyName];
+      }
+      setChecked(newList);
+    }
+  };
+
+  // Getting user watchlist list from firestore collection
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setAuthUser(currentUser);
+    });
+  }, []);
+
+  useEffect(() => {
+    async function getUserData() {
+      if (authUser) {
+        const docRef = doc(usersCollection, authUser.uid);
+        const singleUserDoc = await getDoc(docRef);
+        const singleUser = singleUserDoc.data();
+        if (singleUser) {
+          setChecked(singleUser.watchlist);
+        }
+      }
+    }
+    getUserData();
+  }, [authUser]);
+
+  // Updating user watchlist in firestore collection
+  useEffect(() => {
+    async function updateValues() {
+      if (authUser) {
+        const docRef = doc(usersCollection, authUser.uid);
+        await updateDoc(docRef, {
+          watchlist: checked,
+        });
+      }
+    }
+    updateValues();
+
+    // Managing save company icon color
+    if (selectedCompany) {
+      if (checked.includes(selectedCompany.companyName)) {
+        setCompanyIsSaved(true);
+      } else {
+        setCompanyIsSaved(false);
+      }
+    }
+    // eslint-disable-next-line
+  }, [checked]);
+
   return (
     <div className="company-page">
-      <section>
-        <TopNavigation sendToPage="/" goBack={changeCompanyPageComponents} />
-      </section>
+      {companyDetails ? (
+        <section>
+          <TopNavigation saveCompany={saveCompany} saveCompanyChecked={companyIsSaved} goBack={changeCompanyPageComponents} />
+        </section>
+      ) : (
+        <section>
+          <TopNavigation sendToPage="/" goBack={changeCompanyPageComponents} />
+        </section>
+      )}
+
       <header className="company-header">
         <div style={{ backgroundColor: `${selectedCompany?.logoBackground}`, color: `${selectedCompany?.logoText}` }}>
           {selectedCompany?.companyName.charAt(0)}
@@ -90,6 +163,7 @@ const CompanyPage: React.FC = (props) => {
           setBuyActive={setBuyActive}
           reviewBuyActive={reviewBuyActive}
           setReviewBuyActive={setReviewBuyActive}
+          selectedCompany={selectedCompany}
         />
       ) : null}
 
@@ -99,6 +173,7 @@ const CompanyPage: React.FC = (props) => {
           setSellActive={setSellActive}
           reviewSellActive={reviewSellActive}
           setReviewSellActive={setReviewSellActive}
+          selectedCompany={selectedCompany}
         />
       ) : null}
 

@@ -42,7 +42,7 @@ const HomePage: React.FC<HomeProps> = (props) => {
 
   // Matching companies to user values
   useEffect(() => {
-    const filteredCompanies = allCompanies.filter((comp) => userValues.some((item2) => comp.sdgs.includes(item2)));
+    const filteredCompanies = allCompanies.filter((comp) => userValues.some((item) => comp.sdgs.includes(item)));
     setUsersCompanies(filteredCompanies);
   }, [allCompanies, userValues]);
 

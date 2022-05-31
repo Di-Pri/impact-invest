@@ -31,8 +31,6 @@ const UserValuesUpdate: React.FC<UserValuesUpdateProps> = (props) => {
   const [checked, setChecked] = useState<Array<string>>([]);
   const [authUser, setAuthUser] = useState<FirebaseUser | null>(null);
 
-  console.log("checked", checked);
-
   const checkList = [
     "sdg_one",
     "sdg_two",

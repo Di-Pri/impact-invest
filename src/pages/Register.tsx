@@ -45,9 +45,8 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
     email: "",
     password: "",
     cookies: false,
+    watchlist: [],
   });
-
-  console.log("userData", userData);
 
   const displayFormStep = () => {
     if (step === 0) {

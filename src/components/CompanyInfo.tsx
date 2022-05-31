@@ -30,36 +30,36 @@ const CompanyInfo: React.FC<CompanyInfoProps> = (props) => {
       <section>
         <h3>Stock info</h3>
         <div>
-          <div className="title">High (1 year)</div>
-          <div className="value">€{props.selectedCompany?.highPrice}</div>
+          <h5 className="title">High (1 year)</h5>
+          <p className="value">€{props.selectedCompany?.highPrice}</p>
         </div>
         <div>
-          <div className="title">Low (1 year)</div>
-          <div className="value">€{props.selectedCompany?.highPrice}</div>
+          <h5 className="title">Low (1 year)</h5>
+          <p className="value">€{props.selectedCompany?.highPrice}</p>
         </div>
       </section>
 
       <section>
         <h3>Company details</h3>
         <div>
-          <div className="title">CEO</div>
-          <div className="value">{props.selectedCompany?.ceo}</div>
+          <h5 className="title">CEO</h5>
+          <p className="value">{props.selectedCompany?.ceo}</p>
         </div>
         <div>
-          <div className="title">Sector</div>
-          <div className="value">{props.selectedCompany?.sector}</div>
+          <h5 className="title">Sector</h5>
+          <p className="value">{props.selectedCompany?.sector}</p>
         </div>
         <div>
-          <div className="title">Employees</div>
-          <div className="value">{props.selectedCompany?.employees}</div>
+          <h5 className="title">Employees</h5>
+          <p className="value">{props.selectedCompany?.employees}</p>
         </div>
         <div>
-          <div className="title">Market Cap</div>
-          <div className="value">{props.selectedCompany?.marketCap}</div>
+          <h5 className="title">Market Cap</h5>
+          <p className="value">{props.selectedCompany?.marketCap}</p>
         </div>
         <div>
-          <div className="title">Dividend yield</div>
-          <div className="value">{props.selectedCompany?.dividends}</div>
+          <h5 className="title">Dividend yield</h5>
+          <p className="value">{props.selectedCompany?.dividends}</p>
         </div>
       </section>
 

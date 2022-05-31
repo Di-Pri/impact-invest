@@ -17,4 +17,10 @@
     height: 17px;
     width: auto;
   }
+
+  .company-checked {
+    svg path {
+      fill: #689ac9;
+    }
+  }
 }

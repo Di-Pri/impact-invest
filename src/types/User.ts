@@ -8,4 +8,5 @@ export interface User {
   email: string;
   password: string;
   cookies: boolean;
+  watchlist: string[];
 }

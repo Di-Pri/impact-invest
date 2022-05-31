@@ -45,7 +45,6 @@ const App: React.FC<AppProps> = (props) => {
       if (authUser) {
         const docRef = doc(usersCollection, authUser.uid);
         const singleUserDoc = await getDoc(docRef);
-
         const singleUser = singleUserDoc.data();
         if (singleUser) {
           setUserObject(singleUser);
