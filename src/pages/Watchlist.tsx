@@ -17,8 +17,6 @@ const WatchlistPage: React.FC<WatchlistProps> = (props) => {
   const [filteredCompanies, setFilteredCompanies] = useState<Company[]>([]);
   const [firestoreWatchlist, setFirestoreWatchlist] = useState<Array<string>>([]);
 
-  console.log("filteredCompanies", filteredCompanies);
-
   // Checking current signed in user id
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {

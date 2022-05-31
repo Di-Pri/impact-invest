@@ -1,3 +1,11 @@
+export interface UserTrades {
+  companyName: string;
+  shares: number;
+  price: string;
+  logoBackground: string;
+  logoColor: string;
+}
+
 export interface User {
   country: string;
   firstName: string;
@@ -9,4 +17,5 @@ export interface User {
   password: string;
   cookies: boolean;
   watchlist: string[];
+  trades: UserTrades[];
 }

@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Company } from "../types/Company";
+import { onAuthStateChanged, User as FirebaseUser } from "firebase/auth";
+import { auth, usersCollection } from "../firebase-config";
+import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 
 export interface ReviewBuyStockProps {
   buyShares: number;
@@ -7,12 +10,32 @@ export interface ReviewBuyStockProps {
 }
 
 const ReviewBuyStock: React.FC<ReviewBuyStockProps> = (props) => {
-  const placeOrder = () => {
-    console.log("placed order");
-  };
+  const [authUser, setAuthUser] = useState<FirebaseUser | null>(null);
 
   // Calculating price
   const totalPrice = props.buyShares * Number(props.selectedCompany?.currentPrice) + 2;
+
+  // Placing order by adding new object to trades array in users collection
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setAuthUser(currentUser);
+    });
+  }, []);
+
+  async function placeOrder() {
+    if (authUser) {
+      const docRef = doc(usersCollection, authUser.uid);
+      await updateDoc(docRef, {
+        trades: arrayUnion({
+          companyName: props.selectedCompany?.companyName,
+          shares: props.buyShares,
+          price: props.selectedCompany?.currentPrice,
+          logoBackground: props.selectedCompany?.logoBackground,
+          logoColor: props.selectedCompany?.logoText,
+        }),
+      });
+    }
+  }
 
   return (
     <div className="review-buy-sell-page">

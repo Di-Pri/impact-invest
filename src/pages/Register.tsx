@@ -46,6 +46,7 @@ const RegisterPage: React.FC<RegisterProps> = (props) => {
     password: "",
     cookies: false,
     watchlist: [],
+    trades: [],
   });
 
   const displayFormStep = () => {
