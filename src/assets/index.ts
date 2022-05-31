@@ -5,6 +5,8 @@ export { CrossIcon } from "./icons/CrossIcon";
 export { BackIcon } from "./icons/BackIcon";
 export { DoneIcon } from "./icons/DoneIcon";
 export { HomeIcon } from "./icons/HomeIcon";
+export { PlusIcon } from "./icons/PlusIcon";
+export { MinusIcon } from "./icons/MinusIcon";
 export { WatchlistIcon } from "./icons/WatchlistIcon";
 export { PortfolioIcon } from "./icons/PortfolioIcon";
 export { AcademyIcon } from "./icons/AcademyIcon";

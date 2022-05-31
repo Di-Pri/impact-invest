@@ -1,10 +1,18 @@
 @use "../base" as b;
 
 .buy-sell-stock-page {
-  height: 70vh;
   text-align: center;
+  margin-bottom: 40px;
+  min-height: 65vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .strech {
+    display: flex;
+    flex-direction: column;
+  }
   h3 {
-    font-size: 19px;
+    font-size: 18px;
     font-weight: 500;
     color: b.$sec-text-color;
   }
@@ -13,7 +21,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 35px;
+    margin-bottom: 2vh;
     > div {
       display: flex;
       justify-content: center;
@@ -47,7 +55,36 @@
       }
     }
   }
+
+  // Input fieds
+  .number-of-shares {
+    > div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 7vh;
+      > div {
+        min-width: 120px;
+        padding-inline: 10px;
+        font-size: 42px;
+        font-weight: 400;
+      }
+    }
+    button {
+      width: 55px;
+      height: 55px;
+      border: none;
+      background-color: b.$app-secondary-color;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  // Total price
   .total {
+    margin-top: 6vh;
     p {
       font-size: 12px;
       font-weight: 500;
@@ -55,8 +92,9 @@
       padding-top: 2px;
     }
     div {
-      font-size: 35px;
+      font-size: 24px;
       font-weight: 500;
+      margin-top: 14px;
     }
   }
 }

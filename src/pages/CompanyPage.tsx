@@ -24,7 +24,7 @@ const CompanyPage: React.FC = (props) => {
   const [reviewBuyActive, setReviewBuyActive] = useState(false);
   const [sellActive, setSellActive] = useState(false);
   const [reviewSellActive, setReviewSellActive] = useState(false);
-
+  const [buyShares, setBuyShares] = useState<number>(0);
   const [checked, setChecked] = useState<Array<string>>([]);
   const [companyIsSaved, setCompanyIsSaved] = useState<boolean>(false);
   const [authUser, setAuthUser] = useState<FirebaseUser | null>(null);
@@ -43,11 +43,6 @@ const CompanyPage: React.FC = (props) => {
   const buyStock = () => {
     setCompanyDetails(false);
     setBuyActive(true);
-  };
-
-  const sellStock = () => {
-    setCompanyDetails(false);
-    setSellActive(true);
   };
 
   // Going to previous step in purchase process
@@ -164,6 +159,8 @@ const CompanyPage: React.FC = (props) => {
           reviewBuyActive={reviewBuyActive}
           setReviewBuyActive={setReviewBuyActive}
           selectedCompany={selectedCompany}
+          buyShares={buyShares}
+          setBuyShares={setBuyShares}
         />
       ) : null}
 
