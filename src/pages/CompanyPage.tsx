@@ -29,10 +29,6 @@ const CompanyPage: React.FC = (props) => {
   const [companyIsSaved, setCompanyIsSaved] = useState<boolean>(false);
   const [authUser, setAuthUser] = useState<FirebaseUser | null>(null);
 
-  console.log("checked", checked);
-
-  console.log("selectedCompany", selectedCompany);
-
   // Finding selected company from all companies global state by id
   useEffect(() => {
     const company = allCompanies.find((elem) => elem.id === params.id);

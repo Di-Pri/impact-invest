@@ -1,6 +1,8 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useRef, useState } from "react";
 import { TriangleIcon, PlusIcon, MinusIcon } from "../assets";
 import { Company } from "../types/Company";
+import PopUp from "./PopUp";
+import { CSSTransition } from "react-transition-group";
 
 export interface BuyStockProps {
   buyActive: boolean;
@@ -13,6 +15,8 @@ export interface BuyStockProps {
 }
 
 const BuyStock: React.FC<BuyStockProps> = (props) => {
+  const [popUpOpen, setPopUpOpen] = useState(false);
+
   // Decrementing the number of shares chosen
   const minusShares = () => {
     if (props.buyShares > 0) {
@@ -22,15 +26,19 @@ const BuyStock: React.FC<BuyStockProps> = (props) => {
     }
   };
 
-  // Increasing the number of shares chosen
-  const plusShares = () => {
-    props.setBuyShares((oldShares) => {
-      return oldShares + 1;
-    });
-  };
-
   // Calculating total price
   const totalPrice = props.buyShares * Number(props.selectedCompany?.currentPrice) + 2;
+
+  // Increasing the number of shares chosen
+  const plusShares = () => {
+    if (totalPrice > 5000 - Number(props.selectedCompany?.currentPrice) + 2) {
+      setPopUpOpen(true);
+    } else {
+      props.setBuyShares((oldShares) => {
+        return oldShares + 1;
+      });
+    }
+  };
 
   // Improving readability of the numbers, with decimals
   const fractionNumber = new Intl.NumberFormat("en-IN", {
@@ -43,6 +51,10 @@ const BuyStock: React.FC<BuyStockProps> = (props) => {
     props.setBuyActive(false);
     props.setReviewBuyActive(true);
   };
+
+  // Passing refs to CSSTransition component
+  const ref1 = useRef(null);
+  const ref2 = useRef(null);
 
   return (
     <div className="buy-sell-stock-page">
@@ -81,6 +93,13 @@ const BuyStock: React.FC<BuyStockProps> = (props) => {
           Review order
         </button>
       </section>
+
+      <CSSTransition in={popUpOpen} timeout={300} classNames="alert2" unmountOnExit nodeRef={ref1}>
+        <div className="blur-background" ref={ref1}></div>
+      </CSSTransition>
+      <CSSTransition in={popUpOpen} timeout={300} classNames="alert" unmountOnExit nodeRef={ref2}>
+        <PopUp hey="Hey" setPopUpOpen={setPopUpOpen} nodeRef={ref2} message="Please deposit funds if you want to buy more shares." />
+      </CSSTransition>
     </div>
   );
 };
