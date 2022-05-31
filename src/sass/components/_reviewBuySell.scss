@@ -1,0 +1,42 @@
+@use "../base" as b;
+
+.review-buy-sell-page {
+  margin-bottom: 40px;
+  min-height: 65vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  h3 {
+    text-align: center;
+    font-size: 19px;
+    font-weight: 600;
+    color: b.$sec-text-color;
+    margin-bottom: 40px;
+  }
+  section {
+    margin-top: 10px;
+    > div {
+      width: 100%;
+      border-bottom: 1.5px solid b.$line-color;
+      padding-bottom: 8px;
+      margin-top: 35px;
+      font-size: 22px;
+      font-weight: 300;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    > div:last-of-type p {
+      font-weight: 700;
+    }
+    .title {
+      font-size: 16px;
+      font-weight: 500;
+      color: b.$sec-text-color;
+    }
+    .value {
+      font-size: 16px;
+      font-weight: 450;
+    }
+  }
+}

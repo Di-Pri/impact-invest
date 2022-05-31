@@ -170,7 +170,7 @@ const CompanyPage: React.FC = (props) => {
         />
       ) : null}
 
-      {reviewBuyActive ? <ReviewBuyStock /> : null}
+      {reviewBuyActive ? <ReviewBuyStock buyShares={buyShares} selectedCompany={selectedCompany} /> : null}
 
       {reviewSellActive ? <ReviewSellStock /> : null}
 
