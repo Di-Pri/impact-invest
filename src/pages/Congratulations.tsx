@@ -7,6 +7,7 @@ import { DoneIcon } from "../assets";
 import { doc, getDoc } from "firebase/firestore";
 import { allCompaniesContext } from "../App";
 import { Company } from "../types/Company";
+import Loading from "../components/Loading";
 
 export interface CongratulationsProps {}
 
@@ -15,6 +16,7 @@ const CongratulationsPage: React.FC<CongratulationsProps> = (props) => {
   const [userValues, setUserValues] = useState<Array<string>>([]);
   const allCompanies = useContext(allCompaniesContext);
   const [usersCompanies, setUsersCompanies] = useState<Company[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const navigate = useNavigate();
 
   console.log("userlenght", usersCompanies.length);
@@ -48,30 +50,45 @@ const CongratulationsPage: React.FC<CongratulationsProps> = (props) => {
     setUsersCompanies(filteredCompanies);
   }, [allCompanies, userValues]);
 
-  return (
-    <div className="congratulations-page">
-      <section className="done-section">
-        <DoneIcon />
-        <h1>Congratulations!</h1>
-        <p>You account has been set up</p>
-      </section>
-      <section>
-        <h3>We have found</h3>
-        <h4>{usersCompanies.length}</h4>
-        <div>
-          <p>companies</p>
-          <p>matching your chosen values</p>
-        </div>
-      </section>
+  // Matching companies to user values
+  useEffect(() => {
+    if (usersCompanies.length !== 0) {
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    }
+  }, [usersCompanies]);
 
-      <button
-        className="blue-button"
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        Get started
-      </button>
+  return (
+    <div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="congratulations-page">
+          <section className="done-section">
+            <DoneIcon />
+            <h1>Congratulations!</h1>
+            <p>You account has been set up</p>
+          </section>
+          <section>
+            <h3>We have found</h3>
+            <h4>{usersCompanies.length}</h4>
+            <div>
+              <p>companies</p>
+              <p>matching your chosen values</p>
+            </div>
+          </section>
+
+          <button
+            className="blue-button"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            Get started
+          </button>
+        </div>
+      )}
     </div>
   );
 };

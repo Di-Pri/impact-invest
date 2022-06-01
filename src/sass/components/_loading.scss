@@ -1,0 +1,28 @@
+@use "../base" as b;
+
+// Loading animation
+.loading-page {
+  background-color: b.$app-secondary-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  svg {
+    fill: b.$bg-color;
+    width: 85vw;
+    animation: loading 2s ease-in 10 forwards;
+  }
+}
+
+@keyframes loading {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}

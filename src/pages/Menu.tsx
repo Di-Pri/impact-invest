@@ -2,11 +2,10 @@ import React, { useState, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import BottomNavigation from "../components/BottomNavigation";
 import HiUser from "../components/HiUser";
-import { BackIcon } from "../assets";
+import { BackIcon, MainLogo } from "../assets";
 import PopUp from "../components/PopUp";
 import { CSSTransition } from "react-transition-group";
 import { userObjectContext } from "../App";
-import { MainLogo } from "../assets";
 
 export interface MenuProps {}
 
