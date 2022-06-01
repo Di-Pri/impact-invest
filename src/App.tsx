@@ -19,6 +19,7 @@ import "./App.scss";
 import UserValuesUpdate from "./pages/UserValuesUpdate";
 import CompanyPage from "./pages/CompanyPage";
 import { Company } from "./types/Company";
+import ResetPassword from "./pages/ResetPassword";
 
 export interface AppProps {}
 
@@ -82,6 +83,7 @@ const App: React.FC<AppProps> = (props) => {
               }
             />
             <Route path="login" element={<LoginPage />} />
+            <Route path="resetpassword" element={<ResetPassword />} />
             <Route path="register" element={<RegisterPage />} />
             <Route path="congratulations" element={<CongratulationsPage />} />
             <Route path="watchlist" element={<WatchlistPage />} />

@@ -14,6 +14,7 @@ export interface PopUpProps {
   logout?: string;
   tradeDone?: () => void;
   navigateToPortfolio?: string;
+  navigateToLogin?: string;
 }
 
 const PopUp: React.FC<PopUpProps> = (props) => {
@@ -51,6 +52,10 @@ const PopUp: React.FC<PopUpProps> = (props) => {
 
         {props.tradeDone ? (
           <button className="close-button" onClick={props.tradeDone}>
+            <CrossIcon />
+          </button>
+        ) : props.navigateToLogin ? (
+          <button className="close-button" onClick={() => navigate("/login")}>
             <CrossIcon />
           </button>
         ) : (

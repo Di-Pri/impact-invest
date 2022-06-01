@@ -115,7 +115,9 @@ const LoginPage: React.FC<LoginProps> = (props) => {
           {inputNameError.includes("wrong-password") ? <div className="input-error-message">Please enter the correct password</div> : null}
         </div>
 
-        <button className="text-button">Forgot password?</button>
+        <button onClick={() => navigate("/resetpassword")} className="text-button">
+          Forgot password?
+        </button>
 
         <button className="large-button" disabled={!loginEmail || !loginPassword} onClick={login}>
           Log in
