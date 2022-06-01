@@ -17,8 +17,11 @@ const ReviewBuyStock: React.FC<ReviewBuyStockProps> = (props) => {
   const [authUser, setAuthUser] = useState<FirebaseUser | null>(null);
   const [popUpOpen, setPopUpOpen] = useState(false);
 
-  // Calculating price
-  const totalPrice = props.buyShares * Number(props.selectedCompany?.currentPrice) + 2;
+  // Calculating value
+  const value = props.buyShares * Number(props.selectedCompany?.currentPrice);
+
+  // Calculating total price
+  const totalPrice = value + 2;
 
   // Placing order by adding new object to trades array in users collection
   useEffect(() => {
@@ -71,7 +74,7 @@ const ReviewBuyStock: React.FC<ReviewBuyStockProps> = (props) => {
         </div>
         <div>
           <h5 className="title">Value</h5>
-          <p className="value">~€{props.selectedCompany?.currentPrice}</p>
+          <p className="value">~€{fractionNumber.format(value)}</p>
         </div>
         <div>
           <h5 className="title">Fees</h5>

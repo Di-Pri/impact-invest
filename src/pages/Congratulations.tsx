@@ -14,12 +14,12 @@ export interface CongratulationsProps {}
 const CongratulationsPage: React.FC<CongratulationsProps> = (props) => {
   const [authUser, setAuthUser] = useState<FirebaseUser | null>(null);
   const [userValues, setUserValues] = useState<Array<string>>([]);
-  const allCompanies = useContext(allCompaniesContext);
   const [usersCompanies, setUsersCompanies] = useState<Company[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const navigate = useNavigate();
 
-  console.log("userlenght", usersCompanies.length);
+  const allCompanies = useContext(allCompaniesContext);
+
+  const navigate = useNavigate();
 
   // Checking current signed in user
   useEffect(() => {

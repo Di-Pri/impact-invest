@@ -33,7 +33,6 @@ const DateOfBirth: React.FC<DateOfBirthProps> = (props) => {
 
     // Validating date format
     if (year > 2021 || year < 1900 || month > 11 || day > 31) {
-      console.log("Invalid date");
       props.setInputNameError("Invalid date");
     } else {
       props.setInputNameError("");
@@ -45,10 +44,8 @@ const DateOfBirth: React.FC<DateOfBirthProps> = (props) => {
       return tempDate <= new Date();
     }
     if (meetsMinimumAge(birthDate)) {
-      console.log("Ok age");
       props.setUserTooYoungError(false);
     } else {
-      console.log("Too young");
       props.setUserTooYoungError(true);
     }
   }, [props]);
