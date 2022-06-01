@@ -37,6 +37,7 @@ const ReviewBuyStock: React.FC<ReviewBuyStockProps> = (props) => {
           price: props.selectedCompany?.currentPrice,
           logoBackground: props.selectedCompany?.logoBackground,
           logoColor: props.selectedCompany?.logoText,
+          companySdgs: props.selectedCompany?.sdgs,
         }),
       });
       setPopUpOpen(true);

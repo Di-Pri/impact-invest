@@ -44,11 +44,21 @@
   // Portfolio sdgs
   .portfolio-sdgs {
     text-align: center;
+    margin-inline: 20px;
     h2 {
       font-size: 19px;
       font-weight: 600;
       color: b.$sec-text-color;
-      margin-top: 40px;
+      margin-top: 45px;
+      margin-bottom: 35px;
+    }
+    svg {
+      max-width: 275px;
+      width: 100%;
+      height: auto;
+    }
+    path.background {
+      fill: b.$grey-sdgs-color;
     }
   }
 
@@ -115,6 +125,7 @@
     font-weight: 500;
     color: b.$success-color;
     white-space: nowrap;
+    margin-left: auto;
   }
   .trade-price {
     display: flex;

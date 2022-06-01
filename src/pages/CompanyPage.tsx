@@ -13,6 +13,7 @@ import ReviewSellStock from "../components/ReviewSellStock";
 import { onAuthStateChanged, User as FirebaseUser } from "firebase/auth";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { auth, usersCollection } from "../firebase-config";
+import { UserTrades } from "../types/User";
 
 const CompanyPage: React.FC = (props) => {
   const navigate = useNavigate();
@@ -28,6 +29,8 @@ const CompanyPage: React.FC = (props) => {
   const [checked, setChecked] = useState<Array<string>>([]);
   const [companyIsSaved, setCompanyIsSaved] = useState<boolean>(false);
   const [authUser, setAuthUser] = useState<FirebaseUser | null>(null);
+  const [firestoreTrades, setFirestoreTrades] = useState<UserTrades[]>([]);
+  const [investedMoney, setInvestedMoney] = useState<number>(0);
 
   // Finding selected company from all companies global state by id
   useEffect(() => {
@@ -87,7 +90,7 @@ const CompanyPage: React.FC = (props) => {
     }
   };
 
-  // Getting user watchlist list from firestore collection
+  // Getting user watchlist list and trades from firestore collection
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
       setAuthUser(currentUser);
@@ -103,11 +106,25 @@ const CompanyPage: React.FC = (props) => {
         const singleUser = singleUserDoc.data();
         if (singleUser) {
           setChecked(singleUser.watchlist);
+          setFirestoreTrades(singleUser.trades);
         }
       }
     }
     getUserData();
   }, [authUser]);
+
+  // Calculating free funds available for user to invest
+  useEffect(() => {
+    if (firestoreTrades.length !== 0) {
+      firestoreTrades.map((elem) => {
+        let value = Number(elem.price) * elem.shares;
+        setInvestedMoney((oldAmount) => {
+          return oldAmount + value;
+        });
+        return false;
+      });
+    }
+  }, [firestoreTrades]);
 
   // Updating user watchlist in firestore collection
   useEffect(() => {
@@ -171,6 +188,7 @@ const CompanyPage: React.FC = (props) => {
           selectedCompany={selectedCompany}
           buyShares={buyShares}
           setBuyShares={setBuyShares}
+          investedMoney={investedMoney}
         />
       ) : null}
 

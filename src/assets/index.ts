@@ -12,6 +12,7 @@ export { PortfolioIcon } from "./icons/PortfolioIcon";
 export { AcademyIcon } from "./icons/AcademyIcon";
 export { TriangleIcon } from "./icons/TriangleIcon";
 export { MenuIcon } from "./icons/MenuIcon";
+export { SdgsWheel } from "./icons/SdgsWheel";
 export { SdgOne } from "./sdg-icons/SdgOne";
 export { SdgTwo } from "./sdg-icons/SdgTwo";
 export { SdgThree } from "./sdg-icons/SdgThree";

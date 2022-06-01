@@ -12,6 +12,7 @@ export interface BuyStockProps {
   selectedCompany: Company | undefined;
   buyShares: number;
   setBuyShares: Dispatch<SetStateAction<number>>;
+  investedMoney: number;
 }
 
 const BuyStock: React.FC<BuyStockProps> = (props) => {
@@ -31,7 +32,7 @@ const BuyStock: React.FC<BuyStockProps> = (props) => {
 
   // Increasing the number of shares chosen
   const plusShares = () => {
-    if (totalPrice > 5000 - Number(props.selectedCompany?.currentPrice) + 2) {
+    if (totalPrice > 5000 - props.investedMoney - Number(props.selectedCompany?.currentPrice) + 2) {
       setPopUpOpen(true);
     } else {
       props.setBuyShares((oldShares) => {

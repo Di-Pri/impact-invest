@@ -4,6 +4,7 @@ export interface UserTrades {
   price: string;
   logoBackground: string;
   logoColor: string;
+  companySdgs: string[];
 }
 
 export interface User {
