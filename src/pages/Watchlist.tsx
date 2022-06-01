@@ -54,8 +54,8 @@ const WatchlistPage: React.FC<WatchlistProps> = (props) => {
           {filteredCompanies.length > 0 ? (
             filteredCompanies.map((elem) => {
               return (
-                <Link key={elem.id} to={`/companypage/${elem.id}`}>
-                  <li className="company-box">
+                <li key={elem.id}>
+                  <Link className="company-box" to={`/companypage/${elem.id}`}>
                     <div className="logo-wrap">
                       <div className="company-logo" style={{ backgroundColor: `${elem.logoBackground}`, color: `${elem.logoText}` }}>
                         {elem.companyName.charAt(0)}
@@ -67,8 +67,8 @@ const WatchlistPage: React.FC<WatchlistProps> = (props) => {
                       <div className="sector">{elem.sector}</div>
                     </div>
                     <div className="current-price">€{elem.currentPrice}</div>
-                  </li>
-                </Link>
+                  </Link>
+                </li>
               );
             })
           ) : (
