@@ -77,7 +77,7 @@ const PortfolioPage: React.FC = (props) => {
       <section className="portfolio-details">
         <h2>Portfolio value</h2>
         <div className="portfolio-value">
-          <div>€5000</div>
+          <div>€5,000</div>
         </div>
 
         <div className="flex">

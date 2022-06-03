@@ -35,7 +35,7 @@ const CompanyInfo: React.FC<CompanyInfoProps> = (props) => {
         </div>
         <div>
           <h5 className="title">Low (1 year)</h5>
-          <p className="value">€{props.selectedCompany?.highPrice}</p>
+          <p className="value">€{props.selectedCompany?.lowPrice}</p>
         </div>
       </section>
 
