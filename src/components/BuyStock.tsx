@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useRef, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { TriangleIcon, PlusIcon, MinusIcon } from "../assets";
 import { Company } from "../types/Company";
 import PopUp from "./PopUp";
@@ -17,6 +17,7 @@ export interface BuyStockProps {
 
 const BuyStock: React.FC<BuyStockProps> = (props) => {
   const [popUpOpen, setPopUpOpen] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
 
   // Decrementing the number of shares chosen
   const minusShares = () => {
@@ -46,6 +47,15 @@ const BuyStock: React.FC<BuyStockProps> = (props) => {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
+
+  // Disabling the Review order button when number of shares to buy is zero
+  useEffect(() => {
+    if (props.buyShares === 0) {
+      setButtonDisabled(true);
+    } else {
+      setButtonDisabled(false);
+    }
+  }, [props]);
 
   // Opening review order section
   const reviewBuyStock = () => {
@@ -90,7 +100,11 @@ const BuyStock: React.FC<BuyStockProps> = (props) => {
       </div>
 
       <section>
-        <button className="large-button review-order" onClick={reviewBuyStock}>
+        <button
+          disabled={buttonDisabled}
+          className={buttonDisabled ? "large-button" : "large-button animate-button review-order"}
+          onClick={reviewBuyStock}
+        >
           Review order
         </button>
       </section>
@@ -99,7 +113,7 @@ const BuyStock: React.FC<BuyStockProps> = (props) => {
         <div className="blur-background" ref={ref1}></div>
       </CSSTransition>
       <CSSTransition in={popUpOpen} timeout={300} classNames="alert" unmountOnExit nodeRef={ref2}>
-        <PopUp hey="Hey" setPopUpOpen={setPopUpOpen} nodeRef={ref2} message="Please deposit funds if you want to buy more shares." />
+        <PopUp hey="Hey" setPopUpOpen={setPopUpOpen} nodeRef={ref2} message="Please deposit funds to buy more shares." />
       </CSSTransition>
     </div>
   );

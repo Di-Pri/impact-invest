@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from "react";
+import { useState, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import BottomNavigation from "../components/BottomNavigation";
 import HiUser from "../components/HiUser";
@@ -7,9 +7,7 @@ import PopUp from "../components/PopUp";
 import { CSSTransition } from "react-transition-group";
 import { userObjectContext } from "../App";
 
-export interface MenuProps {}
-
-const MenuPage: React.FC<MenuProps> = (props) => {
+const MenuPage = () => {
   const [popUpOpen, setPopUpOpen] = useState(false);
 
   const userObject = useContext(userObjectContext);

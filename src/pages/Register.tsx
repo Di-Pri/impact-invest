@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { auth, usersCollection } from "../firebase-config";
@@ -15,9 +15,7 @@ import { User } from "../types/User";
 import PopUp from "../components/PopUp";
 import { CSSTransition } from "react-transition-group";
 
-export interface RegisterProps {}
-
-const RegisterPage: React.FC<RegisterProps> = (props) => {
+const RegisterPage = () => {
   const [step, setStep] = useState(0);
   const [registerEmail, setRegisterEmail] = useState<string>("");
   const [registerPassword, setRegisterPassword] = useState<string>("");

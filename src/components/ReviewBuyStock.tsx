@@ -20,7 +20,7 @@ const ReviewBuyStock: React.FC<ReviewBuyStockProps> = (props) => {
   // Calculating value
   const value = props.buyShares * Number(props.selectedCompany?.currentPrice);
 
-  // Calculating total price
+  // Calculating total price with a fee
   const totalPrice = value + 2;
 
   // Placing order by adding new object to trades array in users collection

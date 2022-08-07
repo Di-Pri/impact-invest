@@ -21,9 +21,9 @@ const CompanyChart: React.FC<CompanyChartProps> = (props) => {
         <StockChart />
       </section>
       <section className="chart-dates">
-        <p>Aug 2021</p>
-        <p>Dec 2021</p>
-        <p>Apr 2021</p>
+        <p>Oct 2021</p>
+        <p>Feb 2022</p>
+        <p>Jun 2022</p>
       </section>
     </div>
   );

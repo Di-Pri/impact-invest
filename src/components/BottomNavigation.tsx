@@ -1,10 +1,7 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { MenuIcon, HomeIcon, WatchlistIcon, PortfolioIcon, AcademyIcon } from "../assets";
 
-export interface BottomNavigationProps {}
-
-const BottomNavigation: React.FC<BottomNavigationProps> = (props) => {
+const BottomNavigation = () => {
   const navPages = [
     { link: "/", icon: <HomeIcon />, text: "Home" },
     { link: "/watchlist", icon: <WatchlistIcon />, text: "Watchlist" },

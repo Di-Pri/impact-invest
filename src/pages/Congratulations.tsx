@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, usersCollection } from "../firebase-config";
@@ -9,9 +9,7 @@ import { allCompaniesContext } from "../App";
 import { Company } from "../types/Company";
 import Loading from "../components/Loading";
 
-export interface CongratulationsProps {}
-
-const CongratulationsPage: React.FC<CongratulationsProps> = (props) => {
+const CongratulationsPage = () => {
   const [authUser, setAuthUser] = useState<FirebaseUser | null>(null);
   const [userValues, setUserValues] = useState<Array<string>>([]);
   const [usersCompanies, setUsersCompanies] = useState<Company[]>([]);

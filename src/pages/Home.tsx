@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState, useContext, useEffect } from "react";
+import { ChangeEvent, useState, useContext, useEffect } from "react";
 import BottomNavigation from "../components/BottomNavigation";
 import HiUser from "../components/HiUser";
 import { Link } from "react-router-dom";
@@ -9,9 +9,7 @@ import { auth, usersCollection } from "../firebase-config";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 
-export interface HomeProps {}
-
-const HomePage: React.FC<HomeProps> = (props) => {
+const HomePage = () => {
   const allCompanies = useContext(allCompaniesContext);
   const [authUser, setAuthUser] = useState<FirebaseUser | null>(null);
   const [usersCompanies, setUsersCompanies] = useState<Company[]>([]);

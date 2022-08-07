@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import BottomNavigation from "../components/BottomNavigation";
 import HiUser from "../components/HiUser";
 import { Link } from "react-router-dom";
@@ -9,9 +9,7 @@ import { auth, usersCollection } from "../firebase-config";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 
-export interface WatchlistProps {}
-
-const WatchlistPage: React.FC<WatchlistProps> = (props) => {
+const WatchlistPage = () => {
   const allCompanies = useContext(allCompaniesContext);
   const [authUser, setAuthUser] = useState<FirebaseUser | null>(null);
   const [filteredCompanies, setFilteredCompanies] = useState<Company[]>([]);

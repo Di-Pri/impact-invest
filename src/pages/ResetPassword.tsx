@@ -1,11 +1,11 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { sendPasswordResetEmail, getAuth } from "firebase/auth";
 import { MainLogo, IIText } from "../assets";
 import PopUp from "../components/PopUp";
 import { CSSTransition } from "react-transition-group";
 
-const ResetPassword: React.FC = (props) => {
+const ResetPassword = () => {
   const [email, setEmail] = useState<string>("");
   const [inputEmailName, setInputEmailName] = useState<boolean>(false);
   const [inputNameError, setInputNameError] = useState<string>("");
@@ -17,7 +17,7 @@ const ResetPassword: React.FC = (props) => {
   const resetPassword = () => {
     sendPasswordResetEmail(auth, email)
       .then(() => {
-        // Password reset email sent!
+        // Password reset email sent
         setPopUpOpen(true);
       })
       .catch((error) => {

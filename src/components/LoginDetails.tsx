@@ -74,7 +74,7 @@ const LoginDetails: React.FC<LoginDetailsProps> = (props) => {
       setPassNumber(false);
     }
 
-    // Hiding password helper when
+    // Hiding password helper when all required characters entered
     if (inputPasswordName) {
       if (!passUppercase || !passLowercase || !passNumber || !passCharacters) {
         setShowPassHelper(true);

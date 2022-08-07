@@ -27,19 +27,19 @@ const DateOfBirth: React.FC<DateOfBirthProps> = (props) => {
     // Validating date and users age
     const splitDate = props.userData.dateOfBirth.split("/");
     const day = Number(splitDate[0]);
-    const month = Number(splitDate[1]) - 1;
+    const month = Number(splitDate[1]);
     const year = Number(splitDate[2]);
     let birthDate = new Date(year, month, day);
 
     // Validating date format
-    if (year > 2021 || year < 1900 || month > 11 || day > 31) {
+    if (year > 2021 || year < 1900 || month > 12 || splitDate[1] === "00" || day > 31 || splitDate[0] === "00") {
       props.setInputNameError("Invalid date");
     } else {
       props.setInputNameError("");
     }
 
     //Checking if the user older than 18
-    function meetsMinimumAge(birthDate: any) {
+    function meetsMinimumAge(birthDate: Date) {
       let tempDate = new Date(birthDate.getFullYear() + 18, birthDate.getMonth(), birthDate.getDate());
       return tempDate <= new Date();
     }

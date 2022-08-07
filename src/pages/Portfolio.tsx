@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import HiUser from "../components/HiUser";
 import { onAuthStateChanged, User as FirebaseUser } from "firebase/auth";
 import BottomNavigation from "../components/BottomNavigation";
@@ -7,7 +7,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { UserTrades } from "../types/User";
 import { SdgsWheel } from "../assets";
 
-const PortfolioPage: React.FC = (props) => {
+const PortfolioPage = () => {
   const [authUser, setAuthUser] = useState<FirebaseUser | null>(null);
   const [firestoreTrades, setFirestoreTrades] = useState<UserTrades[]>([]);
   const [investedMoney, setInvestedMoney] = useState<number>(0);

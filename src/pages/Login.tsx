@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase-config";
 import { MainLogo, IIText } from "../assets";
 
-export interface LoginProps {}
-
-const LoginPage: React.FC<LoginProps> = (props) => {
+const LoginPage = () => {
   const [loginEmail, setLoginEmail] = useState<string>("");
   const [loginPassword, setLoginPassword] = useState<string>("");
   const [inputEmailName, setInputEmailName] = useState<boolean>(false);

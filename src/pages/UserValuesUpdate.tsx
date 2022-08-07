@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { doc, getDoc, updateDoc } from "@firebase/firestore";
 import { auth, usersCollection } from "../firebase-config";
 import { onAuthStateChanged } from "firebase/auth";
@@ -25,9 +25,7 @@ import { SdgFifteen } from "../assets";
 import { SdgSixteen } from "../assets";
 import { SdgSeventeen } from "../assets";
 
-export interface UserValuesUpdateProps {}
-
-const UserValuesUpdate: React.FC<UserValuesUpdateProps> = (props) => {
+const UserValuesUpdate = () => {
   const [checked, setChecked] = useState<Array<string>>([]);
   const [authUser, setAuthUser] = useState<FirebaseUser | null>(null);
 
