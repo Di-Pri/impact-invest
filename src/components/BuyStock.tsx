@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import React, { ChangeEvent, Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { TriangleIcon, PlusIcon, MinusIcon } from "../assets";
 import { Company } from "../types/Company";
 import PopUp from "./PopUp";
@@ -18,6 +18,7 @@ export interface BuyStockProps {
 const BuyStock: React.FC<BuyStockProps> = (props) => {
   const [popUpOpen, setPopUpOpen] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
+  const [preBuyShares, setPreBuyShares] = useState<number>(props.buyShares);
 
   // Decrementing the number of shares chosen
   const minusShares = () => {
@@ -31,9 +32,12 @@ const BuyStock: React.FC<BuyStockProps> = (props) => {
   // Calculating total price
   const totalPrice = props.buyShares * Number(props.selectedCompany?.currentPrice) + 2;
 
+  // Calculating the number of shares the user has money for
+  const affordableShares = Math.floor((5000 - props.investedMoney - 2) / Number(props.selectedCompany?.currentPrice));
+
   // Increasing the number of shares chosen
   const plusShares = () => {
-    if (totalPrice > 5000 - props.investedMoney - Number(props.selectedCompany?.currentPrice) + 2) {
+    if (props.buyShares > affordableShares - 1) {
       setPopUpOpen(true);
     } else {
       props.setBuyShares((oldShares) => {
@@ -41,6 +45,19 @@ const BuyStock: React.FC<BuyStockProps> = (props) => {
       });
     }
   };
+
+  // Changing the number of shares directly in input field
+  useEffect(() => {
+    if (preBuyShares > affordableShares) {
+      setPopUpOpen(true);
+      setPreBuyShares((oldShares) => {
+        return Number(oldShares.toString().slice(0, -1));
+      });
+    } else {
+      props.setBuyShares(preBuyShares);
+    }
+    // eslint-disable-next-line
+  }, [preBuyShares]);
 
   // Improving readability of the numbers, with decimals
   const fractionNumber = new Intl.NumberFormat("en-IN", {
@@ -85,7 +102,16 @@ const BuyStock: React.FC<BuyStockProps> = (props) => {
             <button onClick={minusShares}>
               <MinusIcon />
             </button>
-            <div>{props.buyShares}</div>
+
+            <div>
+              <input
+                value={props.buyShares}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  setPreBuyShares(Number(e.target.value));
+                }}
+              />
+            </div>
+
             <button onClick={plusShares}>
               <PlusIcon />
             </button>
@@ -113,7 +139,12 @@ const BuyStock: React.FC<BuyStockProps> = (props) => {
         <div className="blur-background" ref={ref1}></div>
       </CSSTransition>
       <CSSTransition in={popUpOpen} timeout={300} classNames="alert" unmountOnExit nodeRef={ref2}>
-        <PopUp hey="Hey" setPopUpOpen={setPopUpOpen} nodeRef={ref2} message="Please deposit funds to buy more shares." />
+        <PopUp
+          hey="Hey"
+          setPopUpOpen={setPopUpOpen}
+          nodeRef={ref2}
+          message={`You have available funds to buy ${affordableShares} shares. Please deposit money to buy more shares.`}
+        />
       </CSSTransition>
     </div>
   );

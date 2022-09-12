@@ -64,10 +64,17 @@
       align-items: center;
       margin-top: 7vh;
       > div {
-        min-width: 120px;
         padding-inline: 10px;
-        font-size: 42px;
-        font-weight: 400;
+        input {
+          font-family: b.$main-font-family;
+          font-weight: 400;
+          font-size: 42px;
+          text-align: center;
+          width: 100px;
+          border: none;
+          outline: none;
+          background-color: b.$bg-color;
+        }
       }
     }
     button {
