@@ -66,7 +66,7 @@ const CongratulationsPage = () => {
           <section className="done-section">
             <DoneIcon />
             <h1>Congratulations!</h1>
-            <p>You account has been set up</p>
+            <p>Your account has been set up</p>
           </section>
           <section>
             <h3>We have found</h3>

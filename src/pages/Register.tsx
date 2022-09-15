@@ -21,8 +21,8 @@ const RegisterPage = () => {
   const [registerPassword, setRegisterPassword] = useState<string>("");
   const [inputNameError, setInputNameError] = useState<string>("");
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
-  const [userTooYoungError, setUserTooYoungError] = useState(false);
-  const [popUpOpen, setPopUpOpen] = useState(false);
+  const [userTooYoungError, setUserTooYoungError] = useState<boolean>(false);
+  const [popUpOpen, setPopUpOpen] = useState<boolean>(false);
 
   const formHeaders = [
     "Country of residence",
@@ -45,6 +45,7 @@ const RegisterPage = () => {
     cookies: false,
     watchlist: [],
     trades: [],
+    portfolio: 5000,
   });
 
   const displayFormStep = () => {

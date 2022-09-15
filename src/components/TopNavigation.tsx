@@ -17,23 +17,23 @@ const TopNavigation: React.FC<TopNavigationProps> = (props) => {
     <div className="top-navigation">
       <section>
         {props.goBack ? (
-          <button style={{ display: props.currentStep === 0 ? "none" : "block" }} onClick={props.goBack}>
+          <button aria-label="Go back" style={{ display: props.currentStep === 0 ? "none" : "block" }} onClick={props.goBack}>
             <BackIcon />
           </button>
         ) : (
-          <button onClick={() => navigate(-1)}>
+          <button aria-label="Go back" onClick={() => navigate(-1)}>
             <BackIcon />
           </button>
         )}
       </section>
       <section>
         {props.sendToPage ? (
-          <button onClick={() => navigate(props.sendToPage!)}>
+          <button aria-label="Close" onClick={() => navigate(props.sendToPage!)}>
             <CrossIcon />
           </button>
         ) : null}
         {props.saveCompany ? (
-          <button className={props.saveCompanyChecked ? "company-checked" : ""} onClick={props.saveCompany}>
+          <button aria-label="Save to watchlist" className={props.saveCompanyChecked ? "company-checked" : ""} onClick={props.saveCompany}>
             <WatchlistIcon />
           </button>
         ) : null}

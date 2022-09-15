@@ -13,6 +13,7 @@ const PortfolioPage = () => {
   const [investedMoney, setInvestedMoney] = useState<number>(0);
   const [allSupportedSdgs, setAllSupportedSdgs] = useState<Array<string>>([]);
   const [sdgColorClass, setSdgColorClass] = useState<string>("");
+  const [portfolioValue, setPortfolioValue] = useState<number>(5000);
 
   // Calculating free funds available for user to invest
   useEffect(() => {
@@ -30,7 +31,7 @@ const PortfolioPage = () => {
     }
   }, [firestoreTrades]);
 
-  // Filtering unique sdgs from all bought companies
+  // Filtering unique sdgs from all bought companies and setting class to change sdgs colors in a wheel
   useEffect(() => {
     let uniqueSdgs: Array<string> = [];
     allSupportedSdgs.forEach((elem) => {
@@ -58,6 +59,7 @@ const PortfolioPage = () => {
         const singleUser = singleUserDoc.data();
         if (singleUser) {
           setFirestoreTrades(singleUser.trades);
+          setPortfolioValue(singleUser.portfolio);
         }
       }
     }
@@ -77,13 +79,13 @@ const PortfolioPage = () => {
       <section className="portfolio-details">
         <h2>Portfolio value</h2>
         <div className="portfolio-value">
-          <div>€5,000</div>
+          <div>€{fractionNumber.format(portfolioValue)}</div>
         </div>
 
         <div className="flex">
           <div>
             <h5 className="title">Free funds</h5>
-            <p className="value">€{fractionNumber.format(5000 - investedMoney)}</p>
+            <p className="value">€{fractionNumber.format(portfolioValue - investedMoney)}</p>
           </div>
           <div>
             <h5 className="title">Return</h5>

@@ -1,49 +1,57 @@
-import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import React, { Dispatch, SetStateAction, useRef, useState } from "react";
 import { Company } from "../types/Company";
-import { onAuthStateChanged, User as FirebaseUser } from "firebase/auth";
-import { auth, usersCollection } from "../firebase-config";
-import { doc, updateDoc, arrayUnion } from "firebase/firestore";
+import { User as FirebaseUser } from "firebase/auth";
+import { usersCollection } from "../firebase-config";
+import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import PopUp from "./PopUp";
 import { CSSTransition } from "react-transition-group";
+import { UserTrades } from "../types/User";
 
 export interface ReviewBuyStockProps {
+  authUser: FirebaseUser | null;
   buyShares: number;
   setBuyShares: Dispatch<SetStateAction<number>>;
   selectedCompany: Company | undefined;
   closeTradePopup: () => void;
+  firestoreTrades: UserTrades[];
+  boughtCompany: UserTrades | undefined;
+  portfolioValue: number;
+  setOrderPlaced: Dispatch<SetStateAction<boolean>>;
 }
 
 const ReviewBuyStock: React.FC<ReviewBuyStockProps> = (props) => {
-  const [authUser, setAuthUser] = useState<FirebaseUser | null>(null);
-  const [popUpOpen, setPopUpOpen] = useState(false);
+  const [popUpOpen, setPopUpOpen] = useState<boolean>(false);
 
   // Calculating value
   const value = props.buyShares * Number(props.selectedCompany?.currentPrice);
 
-  // Calculating total price with a fee
-  const totalPrice = value + 2;
-
+  // Calculating the new number of shares if user already had shares from this company
+  let newNumberOfShares = props.buyShares;
+  if (props.boughtCompany) {
+    newNumberOfShares = props.boughtCompany.shares + props.buyShares;
+  }
   // Placing order by adding new object to trades array in users collection
-  useEffect(() => {
-    onAuthStateChanged(auth, (currentUser) => {
-      setAuthUser(currentUser);
-    });
-  }, []);
-
   async function placeOrder() {
-    if (authUser) {
-      const docRef = doc(usersCollection, authUser.uid);
+    if (props.authUser) {
+      const docRef = doc(usersCollection, props.authUser.uid);
+      if (props.boughtCompany) {
+        await updateDoc(docRef, {
+          trades: arrayRemove(props.boughtCompany),
+        });
+      }
       await updateDoc(docRef, {
         trades: arrayUnion({
           companyName: props.selectedCompany?.companyName,
-          shares: props.buyShares,
+          shares: newNumberOfShares,
           price: props.selectedCompany?.currentPrice,
           logoBackground: props.selectedCompany?.logoBackground,
           logoColor: props.selectedCompany?.logoText,
           companySdgs: props.selectedCompany?.sdgs,
         }),
+        portfolio: props.portfolioValue - 2,
       });
       setPopUpOpen(true);
+      props.setOrderPlaced(true);
     }
   }
 
@@ -82,11 +90,11 @@ const ReviewBuyStock: React.FC<ReviewBuyStockProps> = (props) => {
         </div>
         <div>
           <h5 className="title">Total</h5>
-          <p className="value">~€{fractionNumber.format(totalPrice)}</p>
+          <p className="value">~€{fractionNumber.format(value + 2)}</p>
         </div>
       </section>
 
-      <div className="buy-sell-buttons">
+      <div className="buy-button">
         <button onClick={placeOrder}>Confirm order</button>
       </div>
 

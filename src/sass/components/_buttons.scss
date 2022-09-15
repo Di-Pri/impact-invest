@@ -74,12 +74,24 @@
 .blue-button {
   @include main-button;
   background-color: b.$app-secondary-color;
-  color: b.$bg-color;
 }
 
 // Buy and sell buttons
-.buy-sell-buttons button {
+.buy-button button {
   @include main-button;
   background-color: b.$app-main-color;
   color: b.$bg-color;
+}
+
+.buy-sell-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-inline: 2vw;
+  button {
+    @include main-button;
+    margin: 0;
+    width: 42vw;
+    background-color: b.$app-main-color;
+    color: b.$bg-color;
+  }
 }

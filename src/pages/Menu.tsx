@@ -32,7 +32,7 @@ const MenuPage = () => {
               setPopUpOpen(true);
             }}
           >
-            <p>Logout</p>
+            <p>Log out</p>
             <BackIcon />
           </button>
         </section>

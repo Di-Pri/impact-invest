@@ -14,7 +14,7 @@ const HomePage = () => {
   const [authUser, setAuthUser] = useState<FirebaseUser | null>(null);
   const [usersCompanies, setUsersCompanies] = useState<Company[]>([]);
   const [userValues, setUserValues] = useState<Array<string>>([]);
-  const [searchCompany, setSearchCompany] = useState("");
+  const [searchCompany, setSearchCompany] = useState<string>("");
 
   // Checking current signed in user
   useEffect(() => {

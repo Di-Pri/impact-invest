@@ -1,5 +1,6 @@
 import React from "react";
 import { Company } from "../types/Company";
+import { UserTrades } from "../types/User";
 
 //  SDGs images
 import { SdgOne } from "../assets";
@@ -22,11 +23,40 @@ import { SdgSeventeen } from "../assets";
 
 export interface CompanyInfoProps {
   selectedCompany: Company | undefined;
+  boughtCompany: UserTrades | undefined;
 }
 
 const CompanyInfo: React.FC<CompanyInfoProps> = (props) => {
+  // Improving readability of the numbers, with decimals
+  const fractionNumber = new Intl.NumberFormat("en-IN", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+
   return (
     <div className="company-info">
+      {props.boughtCompany ? (
+        <section>
+          <h3>My investments</h3>
+          <div>
+            <h5 className="title">Number of shares</h5>
+            <p className="value">{props.boughtCompany.shares}</p>
+          </div>
+          <div>
+            <h5 className="title">Everage price</h5>
+            <p className="value">€{props.boughtCompany.price}</p>
+          </div>
+          <div>
+            <h5 className="title">Return</h5>
+            <p className="grow title">+ €0</p>
+          </div>
+          <div>
+            <h5 className="title">Total value</h5>
+            <p className="value">€{fractionNumber.format(Number(props.boughtCompany.price) * props.boughtCompany.shares)}</p>
+          </div>
+        </section>
+      ) : null}
+
       <section>
         <h3>Stock info</h3>
         <div>

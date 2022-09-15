@@ -9,7 +9,7 @@ const ResetPassword = () => {
   const [email, setEmail] = useState<string>("");
   const [inputEmailName, setInputEmailName] = useState<boolean>(false);
   const [inputNameError, setInputNameError] = useState<string>("");
-  const [popUpOpen, setPopUpOpen] = useState(false);
+  const [popUpOpen, setPopUpOpen] = useState<boolean>(false);
 
   const navigate = useNavigate();
 

@@ -13,10 +13,11 @@ export interface BuyStockProps {
   buyShares: number;
   setBuyShares: Dispatch<SetStateAction<number>>;
   investedMoney: number;
+  portfolioValue: number;
 }
 
 const BuyStock: React.FC<BuyStockProps> = (props) => {
-  const [popUpOpen, setPopUpOpen] = useState(false);
+  const [popUpOpen, setPopUpOpen] = useState<boolean>(false);
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
   const [preBuyShares, setPreBuyShares] = useState<number>(props.buyShares);
 
@@ -33,7 +34,7 @@ const BuyStock: React.FC<BuyStockProps> = (props) => {
   const totalPrice = props.buyShares * Number(props.selectedCompany?.currentPrice) + 2;
 
   // Calculating the number of shares the user has money for
-  const affordableShares = Math.floor((5000 - props.investedMoney - 2) / Number(props.selectedCompany?.currentPrice));
+  const affordableShares = Math.floor((props.portfolioValue - props.investedMoney - 2) / Number(props.selectedCompany?.currentPrice));
 
   // Increasing the number of shares chosen
   const plusShares = () => {
@@ -99,7 +100,7 @@ const BuyStock: React.FC<BuyStockProps> = (props) => {
         <section className="number-of-shares">
           <h3>Number of shares to buy</h3>
           <div>
-            <button onClick={minusShares}>
+            <button aria-label="minus" onClick={minusShares}>
               <MinusIcon />
             </button>
 
@@ -112,7 +113,7 @@ const BuyStock: React.FC<BuyStockProps> = (props) => {
               />
             </div>
 
-            <button onClick={plusShares}>
+            <button aria-label="plus" onClick={plusShares}>
               <PlusIcon />
             </button>
           </div>

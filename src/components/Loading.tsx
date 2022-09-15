@@ -1,7 +1,7 @@
 import React from "react";
 import { IIText } from "../assets";
 
-const Loading: React.FC = (props) => {
+const Loading: React.FC = () => {
   return (
     <div className="loading-page">
       <IIText />

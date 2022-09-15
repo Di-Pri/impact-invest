@@ -2,7 +2,7 @@ import React from "react";
 import BottomNavigation from "../components/BottomNavigation";
 import image from "../assets/academy.jpg";
 
-const AcademyPage: React.FC = (props) => {
+const AcademyPage: React.FC = () => {
   return (
     <div className="academy-page">
       <div className="overlay"></div>

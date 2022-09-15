@@ -51,15 +51,16 @@ const PopUp: React.FC<PopUpProps> = (props) => {
         ) : null}
 
         {props.tradeDone ? (
-          <button className="close-button" onClick={props.tradeDone}>
+          <button aria-label="close" className="close-button" onClick={props.tradeDone}>
             <CrossIcon />
           </button>
         ) : props.navigateToLogin ? (
-          <button className="close-button" onClick={() => navigate("/login")}>
+          <button aria-label="close" className="close-button" onClick={() => navigate("/login")}>
             <CrossIcon />
           </button>
         ) : (
           <button
+            aria-label="close"
             className="close-button"
             onClick={() => {
               props.setPopUpOpen(false);

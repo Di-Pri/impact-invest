@@ -19,4 +19,5 @@ export interface User {
   cookies: boolean;
   watchlist: string[];
   trades: UserTrades[];
+  portfolio: number;
 }

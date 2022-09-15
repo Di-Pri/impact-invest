@@ -10,7 +10,7 @@ export interface CountryOfResidenceProps {
 }
 
 const CountryOfResidence: React.FC<CountryOfResidenceProps> = (props) => {
-  const [popUpOpen, setPopUpOpen] = useState(false);
+  const [popUpOpen, setPopUpOpen] = useState<boolean>(false);
 
   // Disabling the button when input field is empty
   useEffect(() => {
