@@ -103,6 +103,7 @@ const SellStock: React.FC<SellStockProps> = (props) => {
 
             <div>
               <input
+                type="number"
                 value={props.sellShares}
                 onChange={(e: ChangeEvent<HTMLInputElement>) => {
                   setPreSellShares(Number(e.target.value));
