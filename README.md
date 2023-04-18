@@ -1,0 +1,12 @@
+App features:
+- Creating an account
+- Choosing SDGs that match the user's values
+- Logging in using email and password
+- Resetting password
+- Updating previously selected SDGs
+- Checking the list with matched companies
+- Searching for a specific company
+- Viewing detailed info about each company
+- Saving companies to watchlist
+- Buying and selling stocks
+- Seeing transactions in a portfolio and contribution to SDGs
